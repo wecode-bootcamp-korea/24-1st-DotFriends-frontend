@@ -1,0 +1,106 @@
+.productItem {
+  display: inline-block;
+  width: 17em;
+  margin: 0.8em 0;
+  padding: 0 0.5em;
+
+  .link {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: black;
+
+    .img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 1em;
+      border-radius: 8px;
+    }
+
+    .description {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      font-size: 0.9rem;
+
+      .title {
+        margin-bottom: 0.5em;
+        font-weight: 700;
+      }
+
+      .price {
+        margin-bottom: 2em;
+        font-weight: 700;
+      }
+    }
+
+    .smallHeart {
+      position: absolute;
+      right: 0;
+      background: transparent;
+      color: lightgray;
+      font-size: 1rem;
+      outline: none;
+      border: none;
+    }
+  }
+  .evaluation {
+    font-size: 0.8rem;
+
+    span {
+      margin-right: 0.3em;
+      color: #8f8f8f;
+    }
+
+    .grade::before {
+      content: '\00B7';
+      margin-right: 0.3em;
+    }
+
+    em {
+      margin-right: 0.3em;
+      color: #6b90dc;
+    }
+
+    span:last-child {
+      color: #6b90dc;
+    }
+  }
+
+  .hoverMenu {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    button {
+      border: none;
+      background-color: #fff;
+      color: #8f8f8f;
+      font-size: 1.2rem;
+      opacity: 0;
+      outline: none;
+      cursor: pointer;
+      transition: opacity 300ms ease-in;
+    }
+
+    .bigHeart {
+      width: 50px;
+      height: 50px;
+      margin-right: 0.7em;
+      border-radius: 50%;
+    }
+
+    .more {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+  }
+  &:hover {
+    .bigHeart,
+    .more {
+      opacity: 0.8;
+    }
+  }
+}
