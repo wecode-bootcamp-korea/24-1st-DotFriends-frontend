@@ -10,16 +10,16 @@ class ViewController extends Component {
           <span></span>
         </button>
         <div className="controller">
-          <button>
+          <button className="listView">
             <i className="fas fa-th-list" />
           </button>
-          <button>
+          <button className="imgView">
             <i className="fas fa-th-large" />
           </button>
-          <button>
+          <button className="bigImgView active">
             <i className="fas fa-window-restore" />
           </button>
-          <button>
+          <button className="galleryView">
             <i class="fas fa-square" />
           </button>
         </div>
