@@ -1,0 +1,19 @@
+.Filter {
+  margin-right: 0.8em;
+  color: #888888;
+
+  &::after {
+    content: '|';
+    margin-left: 0.8em;
+  }
+
+  &:last-child::after {
+    content: '';
+  }
+  button {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+}
