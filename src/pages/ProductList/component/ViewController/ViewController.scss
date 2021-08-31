@@ -1,3 +1,7 @@
+.disapear {
+  display: none;
+}
+
 .viewController {
   display: flex;
   button {
@@ -14,6 +18,31 @@
       margin-left: 0.5em;
     }
   }
+
+  .viewCount {
+    position: relative;
+
+    .viewList {
+      position: absolute;
+      padding: 0.5em 0;
+      border: 1px solid black;
+      background-color: #fff;
+      z-index: 1;
+
+      .listItem {
+        padding: 0.5em 0.5em;
+
+        &:hover {
+          background-color: #f5f7fd;
+
+          button {
+            color: #6b90dc;
+          }
+        }
+      }
+    }
+  }
+
   .controller {
     margin-left: 1.2em;
     button {
