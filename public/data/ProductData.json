@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "미니언 인형",
+    "price": 27000,
+    "isLike": false,
+    "grade": 4.3,
+    "url": "images/mini.jpeg"
+  },
+  {
+    "id": 2,
+    "name": "토이스토리 인형",
+    "price": 27000,
+    "isLike": false,
+    "grade": 4.7,
+    "url": "images/toystory.jpeg"
+  },
+  {
+    "id": 3,
+    "name": "미니언 인형인 줄 알았더니 진짜 미니언",
+    "price": 270000,
+    "isLike": false,
+    "grade": 3.1,
+    "url": "images/mini.jpeg"
+  },
+  {
+    "id": 4,
+    "name": "귀여운 사진이 많았으면 좋겠는 인형",
+    "price": 27000,
+    "isLike": false,
+    "grade": 4.7,
+    "url": "images/toystory.jpeg"
+  },
+  {
+    "id": 5,
+    "name": "가짜 데이터로 실습하기",
+    "price": 27000,
+    "isLike": false,
+    "grade": 4.7,
+    "url": "images/toystory.jpeg"
+  },
+  {
+    "id": 6,
+    "name": "토이스토리 인형",
+    "price": 27000,
+    "isLike": false,
+    "grade": 4.7,
+    "url": "images/toystory.jpeg"
+  }
+]

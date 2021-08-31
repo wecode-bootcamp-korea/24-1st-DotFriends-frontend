@@ -10,8 +10,8 @@
     color: black;
 
     .img {
-      width: 100%;
-      height: auto;
+      width: 14em;
+      height: 14em;
       margin-bottom: 1em;
       border-radius: 8px;
     }
@@ -22,9 +22,13 @@
       position: relative;
       font-size: 0.9rem;
 
-      .title {
+      .name {
+        max-width: 13em;
         margin-bottom: 0.5em;
         font-weight: 700;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
       }
 
       .price {
