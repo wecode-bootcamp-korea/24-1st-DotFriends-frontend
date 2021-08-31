@@ -20,7 +20,7 @@ class ViewController extends Component {
             <i className="fas fa-window-restore" />
           </button>
           <button className="galleryView">
-            <i class="fas fa-square" />
+            <i className="fas fa-square" />
           </button>
         </div>
       </div>

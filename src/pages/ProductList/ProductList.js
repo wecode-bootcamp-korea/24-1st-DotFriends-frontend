@@ -6,9 +6,7 @@ import Product from './Product/Product';
 import './ProductList.scss';
 
 class ProductList extends Component {
-  state = {
-    list: [],
-  };
+  state = {};
 
   componentDidMount = () => {
     fetch('/data/ProductData.json')
@@ -17,6 +15,7 @@ class ProductList extends Component {
   };
 
   render() {
+    const { list } = this.state;
     return (
       <section className="productList">
         <header className="header">
@@ -29,9 +28,11 @@ class ProductList extends Component {
         </div>
 
         <ul className="list">
-          {this.state.list.map(product => (
-            <Product key={product} product={product} />
-          ))}
+          {list ? (
+            list.map(product => <Product key={product.id} product={product} />)
+          ) : (
+            <strong className="none">검색결과가 없습니다.</strong>
+          )}
         </ul>
       </section>
     );
