@@ -1,6 +1,5 @@
 .productItem {
-  display: inline-block;
-  width: 17em;
+  width: 15em;
   margin: 0.8em 0;
   padding: 0 0.5em;
 
@@ -69,7 +68,7 @@
 
   .hoverMenu {
     position: absolute;
-    top: 65%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
 
@@ -87,7 +86,7 @@
     .bigHeart {
       width: 50px;
       height: 50px;
-      margin-right: 0.7em;
+      margin-right: 0.5em;
       border-radius: 50%;
     }
 

@@ -5,10 +5,7 @@ class Product extends Component {
   render() {
     return (
       <li className="productItem">
-        <a
-          href="https://brand.naver.com/linefriends/products/5814820260"
-          className="link"
-        >
+        <a href="#" className="link">
           <img className="img" src="/images/mini.jpeg" alt="미니언" />
           <div className="description">
             <h3 className="title">미니언 생일 축하 인형</h3>
@@ -22,7 +19,7 @@ class Product extends Component {
               <i className="far fa-heart" />
             </button>
             <button className="more">
-              <i class="fas fa-plus" />
+              <i className="fas fa-plus" />
             </button>
           </div>
         </a>
