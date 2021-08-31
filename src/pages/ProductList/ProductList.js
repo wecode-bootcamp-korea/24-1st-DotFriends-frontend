@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Filters from './component/Filters/Filters';
 import SideCategory from './component/SideCategory/SideCategory';
+import ViewController from './component/ViewController/ViewController';
 import Product from './Product/Product';
 import './ProductList.scss';
 
@@ -22,7 +23,11 @@ class ProductList extends Component {
           <h1>category</h1>
           <SideCategory />
         </header>
-        <Filters />
+        <div className="menus">
+          <Filters />
+          <ViewController />
+        </div>
+
         <ul className="list">
           {this.state.list.map(product => (
             <Product key={product} product={product} />

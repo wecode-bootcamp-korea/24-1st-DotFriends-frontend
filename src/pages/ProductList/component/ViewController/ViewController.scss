@@ -1,0 +1,26 @@
+.viewController {
+  display: flex;
+  button {
+    background: transparent;
+    border: none;
+    letter-spacing: 0.1em;
+    outline: none;
+    cursor: pointer;
+
+    span::before {
+      content: '\f0d7';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      margin-left: 0.5em;
+    }
+  }
+  .controller {
+    margin-left: 1.2em;
+    button {
+      width: 2em;
+      height: 2em;
+      border: 1px solid #e0e0e0;
+      color: #8f8f8f;
+    }
+  }
+}
