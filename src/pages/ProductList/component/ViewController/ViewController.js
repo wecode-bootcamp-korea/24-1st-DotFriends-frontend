@@ -6,16 +6,20 @@ class ViewController extends Component {
     this.props.getViewCount(e.target.id);
   };
 
+  getViewMode = e => {
+    this.props.getViewMode(e.currentTarget.id);
+  };
+
   render() {
-    const { isViewClick } = this.props;
+    const { isClickedView, view, viewType } = this.props;
     return (
       <div className="viewController">
         <div className="viewCount">
           <button onClick={this.props.handleViewCount}>
-            20개씩 보기
+            {view}개씩 보기
             <span className=""></span>
           </button>
-          {isViewClick && (
+          {isClickedView && (
             <ul className="viewList">
               <li className="listItem">
                 <button onClick={this.getViewCount} id="2">
@@ -37,16 +41,20 @@ class ViewController extends Component {
         </div>
 
         <div className="controller">
-          <button className="listView">
+          <button
+            className={`listView ${'listView' === viewType ? 'active' : ''}`}
+            onClick={this.getViewMode}
+            id="listView"
+          >
             <i className="fas fa-th-list" />
           </button>
-          <button className="imgView">
-            <i className="fas fa-th-large" />
+          <button className="imgView" onClick={this.getViewMode} id="imgView">
+            <i className="fas fa-th-large" id="imgView" />
           </button>
-          <button className="bigImgView active">
+          <button className="bigImgView" id="bigImgView">
             <i className="fas fa-window-restore" />
           </button>
-          <button className="galleryView">
+          <button className="galleryView" id="galleryView">
             <i className="fas fa-square" />
           </button>
         </div>

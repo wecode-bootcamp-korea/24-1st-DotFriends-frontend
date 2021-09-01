@@ -21,6 +21,7 @@
 
   .viewCount {
     position: relative;
+    padding: 0 0.5em;
 
     .viewList {
       position: absolute;
@@ -44,7 +45,6 @@
   }
 
   .controller {
-    margin-left: 1.2em;
     button {
       width: 2em;
       height: 2em;

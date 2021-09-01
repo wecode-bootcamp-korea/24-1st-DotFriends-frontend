@@ -16,7 +16,7 @@
       border-radius: 8px;
     }
 
-    .description {
+    .detail {
       display: flex;
       flex-direction: column;
       position: relative;
@@ -49,6 +49,11 @@
   }
   .evaluation {
     font-size: 0.8rem;
+
+    .reviewWrapper,
+    .gradeWrapper {
+      display: inline-block;
+    }
 
     span {
       margin-right: 0.3em;
@@ -104,6 +109,60 @@
     .bigHeart,
     .more {
       opacity: 0.8;
+    }
+  }
+  &.listView {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.5em 8em 0.5em 0;
+    border-bottom: 1px solid #e2e5e9;
+
+    .link {
+      width: 90%;
+      display: flex;
+      align-items: center;
+
+      .img {
+        width: 9em;
+        height: 9em;
+        margin-bottom: 1em;
+        border-radius: 8px;
+      }
+
+      .detail {
+        width: 80%;
+        margin-left: 1.5em;
+        font-size: 1rem;
+
+        .name {
+          margin-bottom: 2em;
+          overflow: visible;
+        }
+
+        .smallHeart {
+          top: 25%;
+          right: 0;
+          font-size: 1.8rem;
+        }
+      }
+
+      .hoverMenu {
+        left: 70px;
+      }
+    }
+    .evaluation {
+      padding-left: 1em;
+      border-left: 1px solid #e2e5e9;
+
+      .reviewWrapper {
+        margin-bottom: 0.8em;
+      }
+
+      .grade::before {
+        content: '';
+        margin-right: 0;
+      }
     }
   }
 }

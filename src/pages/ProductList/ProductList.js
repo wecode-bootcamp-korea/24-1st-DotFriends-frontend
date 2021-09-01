@@ -8,8 +8,8 @@ import './ProductList.scss';
 class ProductList extends Component {
   state = {
     view: 20,
-    isViewClick: false,
-    currentView: 'imgView',
+    isClickedView: false,
+    viewType: 'imgView',
   };
 
   componentDidMount = () => {
@@ -19,16 +19,19 @@ class ProductList extends Component {
   };
 
   handleViewCount = () => {
-    this.setState({ isViewClick: !this.state.isViewClick });
+    this.setState({ isClickedView: !this.state.isClickedView });
   };
 
   getViewCount = id => {
-    this.setState({ view: Number(id), isViewClick: false });
+    this.setState({ view: Number(id), isClickedView: false });
+  };
+
+  getViewMode = type => {
+    this.setState({ viewType: type });
   };
 
   render() {
     const { list } = this.state;
-    console.log(this.state);
     return (
       <section className="productList">
         <header className="header">
@@ -38,9 +41,12 @@ class ProductList extends Component {
         <div className="menus">
           <Filters />
           <ViewController
-            isViewClick={this.state.isViewClick}
+            view={this.state.view}
+            isClickedView={this.state.isClickedView}
+            currentView={this.state.currentView}
             handleViewCount={this.handleViewCount}
             getViewCount={this.getViewCount}
+            getViewMode={this.getViewMode}
           />
         </div>
 
@@ -48,7 +54,13 @@ class ProductList extends Component {
           {list ? (
             list
               .slice(0, this.state.view)
-              .map(product => <Product key={product.id} product={product} />)
+              .map(product => (
+                <Product
+                  key={product.id}
+                  product={product}
+                  viewType={this.state.viewType}
+                />
+              ))
           ) : (
             <strong className="none">검색결과가 없습니다.</strong>
           )}
