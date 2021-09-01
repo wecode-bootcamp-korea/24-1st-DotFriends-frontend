@@ -1,7 +1,7 @@
 .filters {
   display: flex;
 
-  .Filter {
+  .filter {
     margin-right: 0.8em;
     color: #888888;
 
@@ -17,8 +17,21 @@
     button {
       background: transparent;
       border: none;
+      color: #888888;
       outline: none;
       cursor: pointer;
+    }
+    &.active {
+      &::before {
+        content: '\2714';
+        color: black;
+        font-weight: 700;
+      }
+
+      button {
+        color: black;
+        font-weight: 700;
+      }
     }
   }
 }

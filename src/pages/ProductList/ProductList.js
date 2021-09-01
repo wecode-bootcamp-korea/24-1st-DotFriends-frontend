@@ -11,6 +11,7 @@ class ProductList extends Component {
     view: 20,
     isClickedView: false,
     viewType: 'imgView',
+    filter: 'popular',
   };
 
   componentDidMount = () => {
@@ -31,8 +32,12 @@ class ProductList extends Component {
     this.setState({ viewType: type });
   };
 
+  getFilterType = type => {
+    this.setState({ filter: type });
+  };
+
   render() {
-    const { list, view, isClickedView, viewType } = this.state;
+    const { list, view, isClickedView, viewType, filter } = this.state;
     console.log(viewType);
     return (
       <section className="productList">
@@ -41,7 +46,7 @@ class ProductList extends Component {
           <SideCategory />
         </header>
         <div className="menus">
-          <Filters />
+          <Filters filter={filter} getFilterType={this.getFilterType} />
           <ViewController
             view={view}
             isClickedView={isClickedView}
