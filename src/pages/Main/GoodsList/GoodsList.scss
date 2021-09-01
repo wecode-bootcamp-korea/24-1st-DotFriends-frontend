@@ -1,55 +1,79 @@
 .goodsList {
-  height: 600px;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  height: 600px;
   padding-top: 30px;
+  overflow: hidden;
 
   h1 {
-    font-size: xx-large;
     display: inline-block;
     margin: 0 auto;
+    font-size: xx-large;
   }
 
   .listContainer {
+    position: relative;
     width: 300vw;
     overflow: hidden;
-    position: relative;
 
     .pre {
+      position: absolute;
       width: 20px;
       height: 100px;
       background-color: slategray;
       opacity: 50%;
-      z-index: 1;
-      left: 0px;
-      position: absolute;
       top: 50%;
+      left: 0px;
       transform: translateY(-50%);
+      z-index: 1;
+
+      &:hover {
+        background-color: black;
+        opacity: 1;
+      }
     }
 
     .list {
-      width: 100vw;
-      float: left;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      float: left;
+      width: 100vw;
     }
 
     .next {
+      position: absolute;
       width: 30px;
       height: 100px;
       background-color: slategray;
       opacity: 50%;
-      z-index: 1;
-      position: absolute;
-      right: 200vw;
       top: 50%;
+      right: 200vw;
       transform: translateY(-50%);
+      z-index: 1;
+
+      &:hover {
+        background-color: black;
+        opacity: 1;
+      }
     }
   }
   .radioContainer {
     text-align: center;
+
+    input[type='radio'] {
+      appearance: none;
+      background-color: #2f2f2f;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      opacity: 30%;
+      margin: 10px;
+      border: none;
+      &:checked {
+        opacity: 1;
+      }
+    }
   }
 }

@@ -5,7 +5,7 @@ import Nav from './components/Nav/Nav';
 import Main from './pages/Main/Main';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
-import TextFooter from './components/Footer/TextFooter/TextFooter';
+import Footer from './components/Footer/Footer';
 
 class Routes extends Component {
   render() {
@@ -17,7 +17,7 @@ class Routes extends Component {
           <Route exact path="/" component={Main} />
           <Route exact path="/signup" component={SignUp} />
         </Switch>
-        <TextFooter />
+        <Footer />
       </Router>
     );
   }

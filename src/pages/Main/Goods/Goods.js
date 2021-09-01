@@ -5,12 +5,8 @@ class Goods extends Component {
   render() {
     return (
       <div className="goods">
-        <div className="goodsImg">
-          <img src="/images/1234.jpeg" alt="나와라" />
-        </div>
-        <div className="goodsName">
-          <h2>하루님</h2>
-        </div>
+        <img src="/images/1234.jpeg" alt="나와라" className="goodsImg" />
+        <h2 className="goodsName">하루님</h2>
       </div>
     );
   }

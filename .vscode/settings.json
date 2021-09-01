@@ -7,6 +7,5 @@
   },
   "javascript.format.enable": false,
   "eslint.alwaysShowStatus": true,
-  "files.autoSave": "onFocusChange",
-  "editor.formatOnPaste": true
+  "files.autoSave": "onFocusChange"
 }
