@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
+import Headers from './Headers/Headers';
+import NewList from './GoodsList/NewList/NewList';
+import OnSaleList from './GoodsList/NewList/OnSaleList';
+import ImageFooter from '../../components/Footer/ImageFooter/ImageFooter';
 
 class Main extends Component {
   render() {
     return (
-      <div>
-        <i class="far fa-moon"></i>
-        <h1>나는 무지랭이다</h1>
+      <div className="main">
+        <Headers />
+        <NewList />
+        <OnSaleList />
+        <ImageFooter />
       </div>
     );
   }

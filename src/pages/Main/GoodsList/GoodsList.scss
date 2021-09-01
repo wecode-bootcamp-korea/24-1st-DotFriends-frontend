@@ -1,0 +1,55 @@
+.goodsList {
+  height: 600px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-top: 30px;
+
+  h1 {
+    font-size: xx-large;
+    display: inline-block;
+    margin: 0 auto;
+  }
+
+  .listContainer {
+    width: 300vw;
+    overflow: hidden;
+    position: relative;
+
+    .pre {
+      width: 20px;
+      height: 100px;
+      background-color: slategray;
+      opacity: 50%;
+      z-index: 1;
+      left: 0px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .list {
+      width: 100vw;
+      float: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .next {
+      width: 30px;
+      height: 100px;
+      background-color: slategray;
+      opacity: 50%;
+      z-index: 1;
+      position: absolute;
+      right: 200vw;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  .radioContainer {
+    text-align: center;
+  }
+}
