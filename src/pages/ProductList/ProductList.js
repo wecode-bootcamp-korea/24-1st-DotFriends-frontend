@@ -27,12 +27,13 @@ class ProductList extends Component {
     this.setState({ view: Number(id), isClickedView: false });
   };
 
-  getViewMode = type => {
+  getViewType = type => {
     this.setState({ viewType: type });
   };
 
   render() {
     const { list, view, isClickedView, viewType } = this.state;
+    console.log(viewType);
     return (
       <section className="productList">
         <header className="header">
@@ -44,10 +45,10 @@ class ProductList extends Component {
           <ViewController
             view={view}
             isClickedView={isClickedView}
-            currentView={viewType}
+            viewType={viewType}
             handleViewCount={this.handleViewCount}
             getViewCount={this.getViewCount}
-            getViewMode={this.getViewMode}
+            getViewType={this.getViewType}
           />
         </div>
 

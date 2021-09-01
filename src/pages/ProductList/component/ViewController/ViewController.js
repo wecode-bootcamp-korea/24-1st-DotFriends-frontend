@@ -6,12 +6,13 @@ class ViewController extends Component {
     this.props.getViewCount(e.target.id);
   };
 
-  getViewMode = e => {
-    this.props.getViewMode(e.currentTarget.id);
+  getViewType = e => {
+    this.props.getViewType(e.currentTarget.id);
   };
 
   render() {
     const { isClickedView, view, viewType } = this.props;
+    console.log(this.props);
     return (
       <div className="viewController">
         <div className="viewCount">
@@ -43,24 +44,32 @@ class ViewController extends Component {
         <div className="controller">
           <button
             className={`listView ${'listView' === viewType ? 'active' : ''}`}
-            onClick={this.getViewMode}
+            onClick={this.getViewType}
             id="listView"
           >
             <i className="fas fa-th-list" />
           </button>
-          <button className="imgView" onClick={this.getViewMode} id="imgView">
+          <button
+            className={`imgView ${'imgView' === viewType ? 'active' : ''}`}
+            onClick={this.getViewType}
+            id="imgView"
+          >
             <i className="fas fa-th-large" />
           </button>
           <button
-            className="bigImgView"
-            onClick={this.getViewMode}
+            className={`bigImgView ${
+              'bigImgView' === viewType ? 'active' : ''
+            }`}
+            onClick={this.getViewType}
             id="bigImgView"
           >
             <i className="fas fa-window-restore" />
           </button>
           <button
-            className="galleryView"
-            onClick={this.getViewMode}
+            className={`galleryView ${
+              'galleryView' === viewType ? 'active' : ''
+            }`}
+            onClick={this.getViewType}
             id="galleryView"
           >
             <i className="fas fa-square" />
