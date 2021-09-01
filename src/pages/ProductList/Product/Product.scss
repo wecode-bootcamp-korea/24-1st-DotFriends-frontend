@@ -165,4 +165,34 @@
       }
     }
   }
+  &.bigImgView {
+    width: 18em;
+    margin: 1em 0.3em;
+
+    .link {
+      width: 100%;
+
+      .img {
+        width: 100%;
+        height: 25em;
+      }
+
+      .name {
+        max-width: 17em;
+      }
+    }
+  }
+
+  &.galleryView {
+    width: 37em;
+
+    .link {
+      width: 100%;
+
+      .img {
+        width: 100%;
+        height: 37em;
+      }
+    }
+  }
 }

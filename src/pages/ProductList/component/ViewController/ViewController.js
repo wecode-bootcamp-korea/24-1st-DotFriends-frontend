@@ -49,12 +49,20 @@ class ViewController extends Component {
             <i className="fas fa-th-list" />
           </button>
           <button className="imgView" onClick={this.getViewMode} id="imgView">
-            <i className="fas fa-th-large" id="imgView" />
+            <i className="fas fa-th-large" />
           </button>
-          <button className="bigImgView" id="bigImgView">
+          <button
+            className="bigImgView"
+            onClick={this.getViewMode}
+            id="bigImgView"
+          >
             <i className="fas fa-window-restore" />
           </button>
-          <button className="galleryView" id="galleryView">
+          <button
+            className="galleryView"
+            onClick={this.getViewMode}
+            id="galleryView"
+          >
             <i className="fas fa-square" />
           </button>
         </div>
