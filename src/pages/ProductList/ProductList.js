@@ -7,6 +7,7 @@ import './ProductList.scss';
 
 class ProductList extends Component {
   state = {
+    list: [],
     view: 20,
     isClickedView: false,
     viewType: 'imgView',
@@ -31,7 +32,7 @@ class ProductList extends Component {
   };
 
   render() {
-    const { list } = this.state;
+    const { list, view, isClickedView, viewType } = this.state;
     return (
       <section className="productList">
         <header className="header">
@@ -41,9 +42,9 @@ class ProductList extends Component {
         <div className="menus">
           <Filters />
           <ViewController
-            view={this.state.view}
-            isClickedView={this.state.isClickedView}
-            currentView={this.state.currentView}
+            view={view}
+            isClickedView={isClickedView}
+            currentView={viewType}
             handleViewCount={this.handleViewCount}
             getViewCount={this.getViewCount}
             getViewMode={this.getViewMode}
@@ -53,12 +54,12 @@ class ProductList extends Component {
         <ul className="list">
           {list ? (
             list
-              .slice(0, this.state.view)
+              .slice(0, view)
               .map(product => (
                 <Product
                   key={product.id}
                   product={product}
-                  viewType={this.state.viewType}
+                  viewType={viewType}
                 />
               ))
           ) : (
