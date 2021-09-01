@@ -5,7 +5,7 @@ import './Login.scss';
 class Login extends Component {
   render() {
     return (
-      <div className="wrap">
+      <div className="wrapLogin">
         <header className="header">
           <div className="headerInner">
             <a href="#" className="logo">
@@ -13,18 +13,19 @@ class Login extends Component {
             </a>
           </div>
         </header>
+
         {/* content */}
         <div className="content">
           <div className="loginWrap">
             <div className="idPwWrap">
               <div className="idCell">
-                <span className="iconId">
+                <span className="iconSize">
                   <i className="far fa-user"></i>
                 </span>
                 <input type="text" placeholder="아이디" className="inputId" />
               </div>
               <div className="pwCell">
-                <span className="iconPw">
+                <span className="iconSize">
                   <i className="fas fa-unlock-alt"></i>
                 </span>
                 <input
