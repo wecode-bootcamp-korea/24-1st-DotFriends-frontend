@@ -25,7 +25,7 @@
 
 .signUp {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: rgb(245, 246, 247);
   display: flex;
   justify-content: center;
@@ -129,6 +129,16 @@
           height: 100%;
           font-weight: 400;
           border: solid 1px rgba(0, 0, 0, 0.08);
+          background-color: rgba(167, 235, 197, 0.8);
+          color: rgb(255, 255, 255);
+          font-size: 18px;
+          cursor: pointer;
+        }
+        .activeBtnSignUp {
+          width: 100%;
+          height: 100%;
+          font-weight: 400;
+          border: solid 1px rgba(0, 0, 0, 0.08);
           background-color: rgb(3, 199, 90);
           color: rgb(255, 255, 255);
           font-size: 18px;
@@ -140,7 +150,7 @@
     .footer {
       display: block;
       justify-content: center;
-      height: 38px;
+      height: 80px;
       padding: 30px 0 15px;
 
       .footerLinks {
