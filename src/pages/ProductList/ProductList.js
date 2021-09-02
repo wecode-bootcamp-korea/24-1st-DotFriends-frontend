@@ -8,16 +8,33 @@ import './ProductList.scss';
 class ProductList extends Component {
   state = {
     list: [],
-    view: 20,
+    view: 10,
     isClickedView: false,
     viewType: 'imgView',
     filter: 'popular',
   };
 
   componentDidMount = () => {
-    fetch('/data/ProductData.json')
+    this.getData();
+  };
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if (this.state.filter !== prevState.filter) {
+      this.getData();
+    }
+    if (this.state.view !== prevState.view) {
+      this.getData();
+    }
+  };
+
+  getData = () => {
+    const encoded = btoa(encodeURIComponent('전자제품'));
+
+    fetch(
+      `http://10.58.0.135:8000/category/blabla?st=${this.state.filter}&page=1&size=${this.state.view}&encoded=${encoded}`
+    )
       .then(result => result.json())
-      .then(list => this.setState({ list }));
+      .then(list => this.setState({ list: list.results }));
   };
 
   handleViewCount = () => {
@@ -38,7 +55,7 @@ class ProductList extends Component {
 
   render() {
     const { list, view, isClickedView, viewType, filter } = this.state;
-    console.log(viewType);
+    console.log(this.state);
     return (
       <section className="productList">
         <header className="header">
@@ -58,16 +75,10 @@ class ProductList extends Component {
         </div>
 
         <ul className="list">
-          {list ? (
-            list
-              .slice(0, view)
-              .map(product => (
-                <Product
-                  key={product.id}
-                  product={product}
-                  viewType={viewType}
-                />
-              ))
+          {list.length !== 0 ? (
+            list.map(product => (
+              <Product key={product.id} product={product} viewType={viewType} />
+            ))
           ) : (
             <strong className="none">검색결과가 없습니다.</strong>
           )}

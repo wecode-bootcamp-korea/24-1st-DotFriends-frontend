@@ -3,12 +3,14 @@ import './Product.scss';
 
 class Product extends Component {
   render() {
-    const { name, price, grade, url } = this.props.product;
+    const { name, price, image } = this.props.product;
     const { viewType } = this.props;
+    const randomNumber = (Math.random() * (5 - 1) + 1).toFixed(1);
+
     return (
       <li className={`productItem ${viewType}`}>
         <a href="#" className="link">
-          <img className="img" src={url} alt="미니언" />
+          <img className="img" src={image} alt="미니언" />
           <div className="detail">
             <h3 className="name">{name}</h3>
             <strong className="price">
@@ -34,7 +36,7 @@ class Product extends Component {
           </div>
           <div className="gradeWrapper">
             <span className="grade">평점</span>
-            <em>{grade}</em>
+            <em>{randomNumber}</em>
             <span>/</span>
             <span>5</span>
           </div>

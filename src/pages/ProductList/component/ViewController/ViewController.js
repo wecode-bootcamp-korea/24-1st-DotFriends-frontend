@@ -12,7 +12,6 @@ class ViewController extends Component {
 
   render() {
     const { isClickedView, view, viewType } = this.props;
-    console.log(this.props);
     return (
       <div className="viewController">
         <div className="viewCount">
@@ -23,18 +22,18 @@ class ViewController extends Component {
           {isClickedView && (
             <ul className="viewList">
               <li className="listItem">
-                <button onClick={this.getViewCount} id="2">
-                  2개씩 보기
+                <button onClick={this.getViewCount} id="10">
+                  10개씩 보기
                 </button>
               </li>
               <li className="listItem">
-                <button onClick={this.getViewCount} id="4">
-                  4개씩 보기
+                <button onClick={this.getViewCount} id="20">
+                  20개씩 보기
                 </button>
               </li>
               <li className="listItem">
-                <button onClick={this.getViewCount} id="6">
-                  6개씩 보기
+                <button onClick={this.getViewCount} id="30">
+                  30개씩 보기
                 </button>
               </li>
             </ul>

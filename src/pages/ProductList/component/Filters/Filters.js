@@ -25,8 +25,8 @@ class Filters extends Component {
             높은가격순
           </button>
         </li>
-        <li className={`filter ${'resent' === filter ? 'active' : ''}`}>
-          <button id="resent" onClick={this.getFilterType}>
+        <li className={`filter ${'recent' === filter ? 'active' : ''}`}>
+          <button id="recent" onClick={this.getFilterType}>
             최신등록순
           </button>
         </li>
