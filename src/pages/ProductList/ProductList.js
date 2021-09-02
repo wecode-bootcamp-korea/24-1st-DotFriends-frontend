@@ -55,7 +55,6 @@ class ProductList extends Component {
 
   render() {
     const { list, view, isClickedView, viewType, filter } = this.state;
-    console.log(this.state);
     return (
       <section className="productList">
         <header className="header">

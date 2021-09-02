@@ -41,38 +41,18 @@ class ViewController extends Component {
         </div>
 
         <div className="controller">
-          <button
-            className={`listView ${'listView' === viewType ? 'active' : ''}`}
-            onClick={this.getViewType}
-            id="listView"
-          >
-            <i className="fas fa-th-list" />
-          </button>
-          <button
-            className={`imgView ${'imgView' === viewType ? 'active' : ''}`}
-            onClick={this.getViewType}
-            id="imgView"
-          >
-            <i className="fas fa-th-large" />
-          </button>
-          <button
-            className={`bigImgView ${
-              'bigImgView' === viewType ? 'active' : ''
-            }`}
-            onClick={this.getViewType}
-            id="bigImgView"
-          >
-            <i className="fas fa-window-restore" />
-          </button>
-          <button
-            className={`galleryView ${
-              'galleryView' === viewType ? 'active' : ''
-            }`}
-            onClick={this.getViewType}
-            id="galleryView"
-          >
-            <i className="fas fa-square" />
-          </button>
+          {BTN_TYPE.map((item, idx) => (
+            <button
+              className={`{item.type} ${
+                item.type === viewType ? 'active' : ''
+              }`}
+              onClick={this.getViewType}
+              id={item.type}
+              key={idx}
+            >
+              <i className={item.icon} />
+            </button>
+          ))}
         </div>
       </div>
     );
@@ -80,3 +60,10 @@ class ViewController extends Component {
 }
 
 export default ViewController;
+
+const BTN_TYPE = [
+  { type: 'listView', icon: 'fas fa-th-list' },
+  { type: 'imgView', icon: 'fas fa-th-large' },
+  { type: 'bigImgView', icon: 'fas fa-window-restore' },
+  { type: 'galleryView', icon: 'fas fa-square' },
+];
