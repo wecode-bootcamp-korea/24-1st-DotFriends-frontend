@@ -44,7 +44,7 @@
       .idPwWrap {
         width: 503px;
 
-        .idCell {
+        .idPwCell {
           display: table;
           width: 100%;
           height: 60px;
@@ -57,40 +57,14 @@
             width: 25px;
             height: 25px;
 
-            .fa-user {
+            .faIcon {
               width: 25px;
               height: 25px;
               font-size: 18px;
             }
           }
 
-          .inputId {
-            width: 80%;
-            border: none;
-            outline: none;
-            font-size: 17px;
-          }
-        }
-
-        .pwCell {
-          display: table;
-          width: 100%;
-          height: 60px;
-          padding: 17px 18px;
-          border: 1px solid rgb(218, 218, 218);
-          border-top: none;
-          border-radius: 0 0 6px 6px;
-          box-shadow: none;
-
-          .iconSize {
-            .fa-unlock-alt {
-              width: 25px;
-              height: 25px;
-              font-size: 18px;
-            }
-          }
-
-          .inputPw {
+          .inputIdPw {
             width: 80%;
             border: none;
             outline: none;
