@@ -1,9 +1,11 @@
-.headers {
-  height: 600px;
-  background-color: tomato;
-}
+.main {
+  .headers {
+    height: 600px;
+    background-color: tomato;
+  }
 
-.bottomImage {
-  height: 480px;
-  background-color: plum;
+  .bottomImage {
+    height: 480px;
+    background-color: plum;
+  }
 }

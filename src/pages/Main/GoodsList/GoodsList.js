@@ -13,6 +13,7 @@ class GoodsList extends Component {
       btn03: false,
     };
   }
+
   handleChecked = () => {
     let { currentSlide } = this.state;
     if (currentSlide === 0)
@@ -25,8 +26,13 @@ class GoodsList extends Component {
 
   handlePrevSlide = () => {
     let { currentSlide } = this.state;
-    if (currentSlide > 0) this.setState({ currentSlide: currentSlide - 1 });
-    else this.setState({ currentSlide: 2 });
+    if (currentSlide > 0) {
+      this.setState({ currentSlide: currentSlide - 1 });
+      this.handleChecked();
+    } else {
+      this.setState({ currentSlide: 2 });
+      this.handleChecked();
+    }
   };
 
   handleNextSlide = () => {
@@ -48,8 +54,9 @@ class GoodsList extends Component {
     this.setState({ currentSlide: 2, btn01: false, btn02: false, btn03: true });
 
   render() {
-    let { currentSlide, btn01, btn02, btn03 } = this.state;
-    let { title, name } = this.props;
+    const { currentSlide, btn01, btn02, btn03 } = this.state;
+    const { title, name, data } = this.props;
+    console.log({ data }[0]);
     return (
       <div className="goodsList">
         <h1>{title}</h1>
@@ -58,15 +65,14 @@ class GoodsList extends Component {
           <li
             className="list"
             style={{
-              // 특정 위치 값을 줘야 하기 때문에 inline으로 줬다
               transform: `translateX(-${currentSlide}00%)`,
               transition: 'all 0.5s ease-in-out',
             }}
           >
-            <Goods />
-            <Goods />
-            <Goods />
-            <Goods />
+            <Goods name={data.id} />
+            <Goods name={data.id} />
+            <Goods name={data.id} />
+            <Goods name={data.id} />
           </li>
           <li
             className="list"

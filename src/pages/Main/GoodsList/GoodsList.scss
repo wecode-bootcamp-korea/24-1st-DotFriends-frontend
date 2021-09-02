@@ -1,9 +1,11 @@
 .goodsList {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+  width: 1200px;
   height: 600px;
   padding-top: 30px;
+  margin: 0 auto;
   overflow: hidden;
 
   h1 {
@@ -39,17 +41,18 @@
       align-items: center;
       justify-content: space-between;
       float: left;
-      width: 100vw;
+      width: 1200px;
+      margin: 0 auto;
     }
 
     .next {
       position: absolute;
-      width: 30px;
+      width: 20px;
       height: 100px;
       background-color: slategray;
       opacity: 50%;
       top: 50%;
-      right: 200vw;
+      left: 1180px;
       transform: translateY(-50%);
       z-index: 1;
 
