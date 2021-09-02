@@ -22,6 +22,10 @@ class Nav extends Component {
         </div>
         <div>
           <h1>DOT FRIENDS</h1>
+          <button></button>
+          <form>
+            <input type="text" placeholder="검색어를 입력해보세요" />
+          </form>
         </div>
       </header>
     );
