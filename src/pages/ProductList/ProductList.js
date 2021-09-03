@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Filters from './component/Filters/Filters';
 import SideCategory from './component/SideCategory/SideCategory';
 import ViewController from './component/ViewController/ViewController';
-import Product from './Product/Product';
+import Product from './component/Product/Product';
 import './ProductList.scss';
 
 class ProductList extends Component {
@@ -31,7 +31,7 @@ class ProductList extends Component {
     const encoded = btoa(encodeURIComponent('전자제품'));
 
     fetch(
-      `http://10.58.0.135:8000/category/blabla?st=${this.state.filter}&page=1&size=${this.state.view}&encoded=${encoded}`
+      `http://10.58.0.135:8000/category?ordering=${this.state.filter}&page=1&limit=${this.state.view}&encoded=${encoded}`
     )
       .then(result => result.json())
       .then(list => this.setState({ list: list.results }));
@@ -72,7 +72,6 @@ class ProductList extends Component {
             getViewType={this.getViewType}
           />
         </div>
-
         <ul className="list">
           {list.length !== 0 ? (
             list.map(product => (
