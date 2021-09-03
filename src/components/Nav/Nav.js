@@ -57,7 +57,10 @@ class Nav extends Component {
                 <Category category={category} />
               ))}
             </ul>
-            <button>더보기</button>
+            <button className="more">
+              더보기
+              <i className="fas fa-chevron-down" />
+            </button>
           </div>
         </nav>
       </header>

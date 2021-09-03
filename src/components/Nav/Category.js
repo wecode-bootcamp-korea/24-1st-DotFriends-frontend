@@ -15,16 +15,17 @@ class Category extends Component {
               <i className="fas fa-chevron-down" />
             )}
           </a>
-          <ul className="subCategories">
-            {category.subCategory &&
-              category.subCategory.map((sub, idx) => (
+          {category.subCategory && (
+            <ul className="subCategories">
+              {category.subCategory.map((sub, idx) => (
                 <li className="subCategory">
                   <a href="#" key={idx}>
                     {sub}
                   </a>
                 </li>
               ))}
-          </ul>
+            </ul>
+          )}
         </li>
       </>
     );
