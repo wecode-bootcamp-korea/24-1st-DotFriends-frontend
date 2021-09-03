@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './SignUp.scss';
+import SignUpJoin from './SignUpJoin';
 
 class SignUp extends Component {
   constructor(props) {
@@ -65,20 +66,20 @@ class SignUp extends Component {
   };
 
   handleSignUp = () => {
-    fetch('http://10.58.4.133:8000/user/signup', {
+    fetch('http://10.58.7.62:8000/user/signup', {
       method: 'POST',
       body: JSON.stringify({
         email: this.state.id,
         password: this.state.pw,
-        rePassword: this.state.rePw, //패스워드체크 물어보기
+        check_password: this.state.rePw, //패스워드체크 물어보기
         name: this.state.name,
         address: this.state.address,
-        phone: this.state.phone,
+        phone_number: this.state.phone,
       }),
     })
       .then(result => result.json())
       .then(result => {
-        if (result.MESSAGE === 'SUCCESS') {
+        if (result.MESSAGE === 'CREATE') {
           alert(`${this.state.id}님, 가입을 환영합니다.`);
           console.log(result);
           // localStorage.setItem('dot-token', result.token);
@@ -91,6 +92,10 @@ class SignUp extends Component {
   };
 
   render() {
+    const joinName = '이름';
+    const joinAddress = '주소';
+    const joinPhone = '휴대전화';
+
     const { btn } = this.state.btn;
     const check =
       this.state.id.includes('@') &&
@@ -163,7 +168,12 @@ class SignUp extends Component {
             </div>
             {/* 이름,주소,폰번호 */}
             <div className="rowGroup userInfo">
-              <div className="joinRow infoRow">
+              <SignUpJoin
+                value={this.state.name}
+                onChange={this.onchangeName}
+                loginkey={this.loginkey}
+              />
+              {/* <div className="joinRow infoRow">
                 <h3 className="joinTitle">이름</h3>
                 <span className="joinBox">
                   <input
@@ -174,7 +184,7 @@ class SignUp extends Component {
                     loginkey={this.loginkey}
                   />
                 </span>
-              </div>
+              </div> */}
               <div className="joinRow infoRow">
                 <h3 className="joinTitle">주소</h3>
                 <span className="joinBox">
@@ -202,15 +212,15 @@ class SignUp extends Component {
               </div>
             </div>
             <div className="btnArea">
-              <a href="/">
-                <button
-                  className={check ? 'activeBtnSignUp' : 'btnSignUp'}
-                  onClick={this.handleSignUp}
-                  disabled={!check}
-                >
-                  가입하기
-                </button>
-              </a>
+              {/* <a href="/"> */}
+              <button
+                className={check ? 'activeBtnSignUp' : 'btnSignUp'}
+                onClick={this.handleSignUp}
+                disabled={!check}
+              >
+                가입하기
+              </button>
+              {/* </a> */}
             </div>
           </div>
           {/* footer */}
