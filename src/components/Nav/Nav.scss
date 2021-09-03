@@ -1,8 +1,133 @@
 .nav {
   width: 100%;
-  .naverMenu {
-    display: flex;
-    justify-content: space-between;
+  // common으로 옮길 부분
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  input {
+    outline: none;
+  }
+
+  .topWrapper {
+    width: 100%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    .naverMenu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 1200px;
+      margin: 0 auto;
+      padding: 0.5em 0;
+
+      .leftMenu {
+        display: flex;
+        align-items: center;
+
+        .naverLogo {
+          margin-right: 1.2em;
+          font-weight: bold;
+          color: #888888;
+        }
+
+        .shopping {
+          font-size: 0.7rem;
+          color: #888888;
+
+          i {
+            margin-right: 0.5em;
+          }
+        }
+      }
+
+      .rightMenu {
+        display: flex;
+        align-items: center;
+
+        button {
+          color: #888888;
+        }
+
+        .login {
+          margin-right: 1em;
+          padding: 0.3em 0.5em;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .service {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  .headerMenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+    padding: 3em 0 2em;
+
+    .likedBtn {
+      position: absolute;
+      left: 0;
+      padding: 0.5em 2em;
+      background-color: black;
+      border-radius: 16px;
+      color: #fff;
+    }
+
+    .mainLogo {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .searchForm {
+      position: absolute;
+      right: 0;
+
+      .search {
+        padding: 0.8em 2em;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 20px;
+      }
+      .searchBtn {
+        position: absolute;
+        top: 0em;
+        right: 1em;
+        font-size: 1.2rem;
+        transform: translate(25%, 37.5%);
+      }
+    }
+  }
+
+  .categoriesContainer {
+    width: 100%;
+    padding: 1.2em 0 1.2em 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    .categoriesWrapper {
+      display: flex;
+      justify-content: space-between;
+      width: 1200px;
+      margin: 0 auto;
+      .categories {
+        display: flex;
+
+        li {
+        }
+      }
+    }
   }
 }
