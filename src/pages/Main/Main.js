@@ -10,37 +10,53 @@ class Main extends Component {
       saleList: {},
     };
   }
+
+  isEmpty = param => {
+    return Object.keys(param).length === 0;
+  };
+
   componentDidMount() {
     const config = {
       method: 'get',
     };
 
-    fetch('http://10.58.2.21:8000/product?option=new&limit=12', config)
+    fetch('http://10.58.6.29:8000/product?option=new&limit=12', config)
       .then(response => response.json())
-      .then(response => this.setState({ newList: response }));
+      .then(response => this.setState({ newList: response.results }));
 
-    fetch('http://10.58.2.21:8000/product?option=sale&limit=12', config)
+    fetch('http://10.58.6.29:8000/product?option=sale&limit=12', config)
       .then(response => response.json())
-      .then(response => this.setState({ saleList: response }));
+      .then(response => this.setState({ saleList: response.results }));
   }
-
-  isTrue = () => {
-    if (this.state.saleList !== {} && this.state.newList !== {}) return true;
-  };
 
   render() {
     const { saleList, newList } = this.state;
-
+    console.log(!this.isEmpty(saleList));
     return (
       <div className="main">
-        {this.isTrue ? (
+        <div className="headers">Header</div>
+        {!this.isEmpty(saleList) && (
           <>
-            <div className="headers">Headers</div>
-            <GoodsList title="새로 나왔어요" name="newList" data={newList} />
-            <GoodsList title="싸게 팔아요" name="saleList" data={saleList} />
-            <div className="bottomImage">BottomImage</div>
+            <GoodsList
+              title="새로 나왔어요"
+              name="newList"
+              responseData={newList}
+            />
+            <GoodsList
+              title="싸게 팔아요"
+              name="saleList"
+              responseData={saleList}
+            />
           </>
-        ) : null}
+        )}
+        <div className="bottomImage">
+          <p className="title">DOT FRIENDS</p>
+          <div className="textContainer">
+            <p>끝없는 데일리 미팅의 재미</p>
+            <p>라인프렌즈는 아니고 클론코딩 프로젝트</p>
+            <p>#위코드 #클론코딩 #프로젝트 #전우애</p>
+          </div>
+        </div>
       </div>
     );
   }

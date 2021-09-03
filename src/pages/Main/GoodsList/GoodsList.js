@@ -55,13 +55,14 @@ class GoodsList extends Component {
 
   render() {
     const { currentSlide, btn01, btn02, btn03 } = this.state;
-    const { title, name, data } = this.props;
-    console.log({ data }[0]);
+    const { title, name, responseData } = this.props;
+    console.log(responseData);
     return (
       <div className="goodsList">
         <h1>{title}</h1>
         <ul className="listContainer">
           <div className="pre" onClick={this.handlePrevSlide}></div>
+          return (
           <li
             className="list"
             style={{
@@ -69,10 +70,9 @@ class GoodsList extends Component {
               transition: 'all 0.5s ease-in-out',
             }}
           >
-            <Goods name={data.id} />
-            <Goods name={data.id} />
-            <Goods name={data.id} />
-            <Goods name={data.id} />
+            {responseData.slice(0, 4).map(data => (
+              <Goods data={data} />
+            ))}
           </li>
           <li
             className="list"
@@ -81,10 +81,9 @@ class GoodsList extends Component {
               transition: 'all 0.5s ease-in-out',
             }}
           >
-            <Goods />
-            <Goods />
-            <Goods />
-            <Goods />
+            {responseData.slice(4, 8).map(data => (
+              <Goods data={data} />
+            ))}
           </li>
           <li
             className="list"
@@ -93,11 +92,11 @@ class GoodsList extends Component {
               transition: 'all 0.5s ease-in-out',
             }}
           >
-            <Goods />
-            <Goods />
-            <Goods />
-            <Goods />
+            {responseData.slice(8, 12).map(data => (
+              <Goods data={data} />
+            ))}
           </li>
+          );
           <div className="next" onClick={this.handleNextSlide}></div>
         </ul>
 
