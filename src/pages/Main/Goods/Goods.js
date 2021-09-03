@@ -3,7 +3,6 @@ import './Goods.scss';
 
 class Goods extends Component {
   render() {
-    console.log(this.props);
     const { name, images } = this.props.data;
     return (
       <div className="goods">
