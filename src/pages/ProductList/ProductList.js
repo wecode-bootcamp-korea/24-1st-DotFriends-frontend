@@ -4,6 +4,7 @@ import SideCategory from './component/SideCategory/SideCategory';
 import ViewController from './component/ViewController/ViewController';
 import Product from './component/Product/Product';
 import './ProductList.scss';
+import Pagination from './component/Pagination/Pagination';
 
 class ProductList extends Component {
   state = {
@@ -12,6 +13,8 @@ class ProductList extends Component {
     isClickedView: false,
     viewType: 'imgView',
     filter: 'popular',
+    page: 1,
+    totalProducts: 0,
   };
 
   componentDidMount = () => {
@@ -25,16 +28,23 @@ class ProductList extends Component {
     if (this.state.view !== prevState.view) {
       this.getData();
     }
+    if (this.state.page !== prevState.page) {
+      this.getData();
+    }
   };
 
   getData = () => {
-    const encoded = btoa(encodeURIComponent('전자제품'));
+    const encoded = btoa(encodeURIComponent('1'));
 
     fetch(
-      `http://10.58.0.135:8000/category?ordering=${this.state.filter}&page=1&limit=${this.state.view}&encoded=${encoded}`
+      `http://10.58.0.135:8000/category?ordering=${this.state.filter}&offset=${
+        (this.state.page - 1) * this.state.view
+      }&limit=${this.state.view}&encoded=${encoded}`
     )
       .then(result => result.json())
-      .then(list => this.setState({ list: list.results }));
+      .then(data =>
+        this.setState({ list: data.results, totalProducts: data.totalProducts })
+      );
   };
 
   handleViewCount = () => {
@@ -53,8 +63,13 @@ class ProductList extends Component {
     this.setState({ filter: type });
   };
 
+  getCurrentPage = num => {
+    this.setState({ page: Number(num) });
+  };
+
   render() {
-    const { list, view, isClickedView, viewType, filter } = this.state;
+    const { list, view, isClickedView, viewType, filter, totalProducts } =
+      this.state;
     return (
       <section className="productList">
         <header className="header">
@@ -81,6 +96,11 @@ class ProductList extends Component {
             <strong className="none">검색결과가 없습니다.</strong>
           )}
         </ul>
+        <Pagination
+          pageCount={Math.ceil(totalProducts / view)}
+          getCurrentPage={this.getCurrentPage}
+          currentPage={this.state.page}
+        />
       </section>
     );
   }
