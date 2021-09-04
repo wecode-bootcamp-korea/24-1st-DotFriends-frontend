@@ -3,8 +3,8 @@ import Filters from './component/Filters/Filters';
 import SideCategory from './component/SideCategory/SideCategory';
 import ViewController from './component/ViewController/ViewController';
 import Product from './component/Product/Product';
-import './ProductList.scss';
 import Pagination from './component/Pagination/Pagination';
+import './ProductList.scss';
 
 class ProductList extends Component {
   state = {
