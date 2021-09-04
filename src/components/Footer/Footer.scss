@@ -1,0 +1,22 @@
+.footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 1200px;
+  background-color: tomato;
+
+  .frontEnd {
+    width: 350px;
+    background-color: teal;
+  }
+
+  .backEnd {
+    width: 350px;
+    background-color: teal;
+  }
+
+  .wecode {
+    width: 350px;
+    background-color: teal;
+  }
+}
