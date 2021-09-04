@@ -1,0 +1,138 @@
+// common css
+button {
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0 0 0 2em;
+  border-bottom: 1px solid #999;
+
+  input {
+    position: absolute;
+    left: 19.2px;
+  }
+
+  .info {
+    position: relative;
+    display: flex;
+    width: 28em;
+    height: 100%;
+    padding: 1.3em;
+    border-right: 1px solid #f4f4f4;
+
+    img {
+      width: 100px;
+      height: 100px;
+      margin-right: 0.8em;
+    }
+
+    .description {
+      font-size: 0.8rem;
+
+      a {
+        margin-right: 0.3em;
+        color: inherit;
+      }
+
+      span {
+        margin-right: 0.3em;
+        color: #959595;
+      }
+
+      .tag {
+        padding: 0 0.5em 0 0.1em;
+        background-color: #0abe16;
+        border: 1px solid #0abe16;
+        color: #fff;
+        font-size: 0.7rem;
+
+        span {
+          background-color: #fff;
+          color: #0abe16;
+        }
+      }
+
+      .productName {
+        margin: 0.7em 0 0.7em 0;
+        font-size: 0.9rem;
+        font-weight: bold;
+      }
+
+      .productPrice {
+        font-size: 0.9rem;
+        font-weight: bold;
+      }
+
+      .delete {
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: #999;
+        font-size: 1rem;
+        cursor: pointer;
+        transform: translate(-50%, 50%);
+      }
+    }
+  }
+  .option {
+    width: 25em;
+    height: 100%;
+    border-right: 1px solid #f4f4f4;
+
+    p {
+      height: 4em;
+      padding: 1.3em;
+      border-bottom: 1px solid #f4f4f4;
+      color: #959595;
+      font-size: 0.8rem;
+    }
+
+    .productCount {
+      padding: 1.7em;
+      color: #222;
+      text-align: right;
+      font-size: 1.2rem;
+
+      i {
+        color: #999;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20em;
+  }
+}
+
+.price {
+  width: 15em;
+
+  .productPrice {
+    margin-bottom: 1em;
+    font-weight: bold;
+  }
+
+  .deliveryCharge {
+    margin-bottom: 1em;
+    color: #999;
+    font-size: 0.8rem;
+  }
+
+  .orderBtn {
+    padding: 0.5em;
+    background-color: #0abe16;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}

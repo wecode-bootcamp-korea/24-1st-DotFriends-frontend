@@ -1,0 +1,219 @@
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart {
+  .cartContainer {
+    width: 1200px;
+    margin: 0 auto;
+
+    .header {
+      margin-bottom: 2.5em;
+      padding: 2.5em 0 0 0;
+    }
+
+    .titleWrapper {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2em;
+
+      .titleMenu {
+        display: flex;
+        h1 {
+          margin-left: 0.5em;
+          font-size: 1.5rem;
+
+          &:first-child::after {
+            content: '|';
+            margin-left: 0.5em;
+            font-size: 1.2rem;
+            vertical-align: top;
+          }
+        }
+      }
+
+      .side {
+        span {
+          color: #999;
+          font-size: 0.9rem;
+          margin-right: 0.5em;
+
+          &:first-child {
+            color: #222;
+            font-weight: bold;
+
+            &::before {
+              content: '';
+            }
+          }
+
+          &::before {
+            content: '\f054';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            margin-right: 0.5em;
+          }
+        }
+      }
+    }
+    .notice {
+      padding: 0.9em 1em;
+      border: 1px solid #ebeff2;
+      background-color: #fafbfc;
+
+      li {
+        margin-bottom: 0.5em;
+        color: #565960;
+        font-size: 0.9rem;
+
+        &:first-child {
+          color: #0abe16;
+        }
+
+        &::before {
+          content: '\00B7';
+          margin-right: 0.5em;
+        }
+
+        i {
+          font-size: 0.5px;
+        }
+      }
+    }
+
+    .cartList {
+      .rowTitle {
+        display: flex;
+        padding: 1.2em;
+        border-top: 2px solid black;
+        border-bottom: 1px solid #999;
+
+        .title {
+          @include flexCenter;
+          font-size: 0.8rem;
+          font-weight: bold;
+        }
+
+        .info {
+          width: 35em;
+        }
+
+        .option {
+          width: 30em;
+        }
+
+        .price {
+          width: 25em;
+        }
+      }
+
+      .cartItems {
+        border-bottom: 1px solid #999;
+      }
+
+      .btnBox {
+        padding: 1.2em 1.2em 1.5em 1.2em;
+        border-bottom: 1px solid #999;
+        input {
+          margin-right: 1em;
+        }
+
+        button {
+          margin-right: 0.5em;
+          padding: 0.5em;
+          border: 1px solid #d1d4d7;
+          border-radius: 4px;
+        }
+      }
+
+      .calculator {
+        display: flex;
+        padding: 2em;
+        border-bottom: 1px solid #999;
+
+        .priceDetail {
+          @include flexCenter;
+          position: relative;
+          width: 50%;
+          border-right: 1px solid #999;
+
+          .detailItem {
+            padding-right: 2.5em;
+            text-align: center;
+
+            &:nth-child(1)::after {
+              position: absolute;
+              top: 65%;
+              left: 210px;
+              content: '\f067';
+              font-family: 'Font Awesome 5 Free';
+              font-weight: 900;
+            }
+
+            &:nth-child(2)::after {
+              position: absolute;
+              top: 65%;
+              left: 310px;
+              content: '\f068';
+              font-family: 'Font Awesome 5 Free';
+              font-weight: 900;
+            }
+
+            &:last-child {
+              dd {
+                color: red;
+              }
+            }
+
+            dt {
+              margin-bottom: 1em;
+              font-size: 0.8rem;
+            }
+
+            dd {
+              font-weight: bold;
+            }
+          }
+        }
+
+        .totalPrice {
+          @include flexCenter;
+          width: 50%;
+
+          span {
+            font-size: 1.2rem;
+            font-weight: bold;
+
+            &:last-child {
+              margin-left: 1em;
+              color: #0abe16;
+            }
+          }
+        }
+      }
+      .cartBtns {
+        @include flexCenter;
+        margin: 1.2em 0;
+
+        button {
+          width: 10em;
+          height: 2.5em;
+          border-radius: 4px;
+          font-size: 1.2rem;
+        }
+
+        .shoppingBtn {
+          margin-right: 1em;
+          border: 1px solid #999;
+        }
+
+        .orderBtn {
+          background-color: #0abe16;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
