@@ -5,4 +5,4 @@ import './styles/reset.scss';
 import './styles/common.scss';
 import ProductList from './pages/ProductList/ProductList';
 
-ReactDOM.render(<ProductList />, document.getElementById('root'));
+ReactDOM.render(<Routes />, document.getElementById('root'));
