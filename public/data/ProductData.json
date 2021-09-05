@@ -5,7 +5,7 @@
     "price": 27000,
     "isLike": false,
     "grade": 4.3,
-    "url": "images/mini.jpeg"
+    "image": "images/mini.jpeg"
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "price": 27000,
     "isLike": false,
     "grade": 4.7,
-    "url": "images/toystory.jpeg"
+    "image": "images/toystory.jpeg"
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
     "price": 270000,
     "isLike": false,
     "grade": 3.1,
-    "url": "images/mini.jpeg"
+    "image": "images/mini.jpeg"
   },
   {
     "id": 4,
@@ -29,7 +29,7 @@
     "price": 27000,
     "isLike": false,
     "grade": 4.7,
-    "url": "images/toystory.jpeg"
+    "image": "images/toystory.jpeg"
   },
   {
     "id": 5,
@@ -37,7 +37,7 @@
     "price": 27000,
     "isLike": false,
     "grade": 4.7,
-    "url": "images/toystory.jpeg"
+    "image": "images/toystory.jpeg"
   },
   {
     "id": 6,
@@ -45,6 +45,6 @@
     "price": 27000,
     "isLike": false,
     "grade": 4.7,
-    "url": "images/toystory.jpeg"
+    "image": "images/toystory.jpeg"
   }
 ]

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import Tags from '../Tags/Tags';
 import './Product.scss';
 
 class Product extends Component {
@@ -9,7 +11,8 @@ class Product extends Component {
 
     return (
       <li className={`productItem ${viewType}`}>
-        <a href="#" className="link">
+        <Link to="/" className="link">
+          <Tags />
           <img className="img" src={image} alt="미니언" />
           <div className="detail">
             <h3 className="name">{name}</h3>
@@ -28,7 +31,7 @@ class Product extends Component {
               <i className="fas fa-plus" />
             </button>
           </div>
-        </a>
+        </Link>
         <div className="evaluation">
           <div className="reviewWrapper">
             <span className="review">리뷰</span>

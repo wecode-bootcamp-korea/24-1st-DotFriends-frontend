@@ -43,7 +43,7 @@ class ViewController extends Component {
         <div className="controller">
           {BTN_TYPE.map((item, idx) => (
             <button
-              className={`{item.type} ${
+              className={`${item.type} ${
                 item.type === viewType ? 'active' : ''
               }`}
               onClick={this.getViewType}

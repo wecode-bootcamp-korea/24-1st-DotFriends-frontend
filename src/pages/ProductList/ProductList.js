@@ -45,6 +45,11 @@ class ProductList extends Component {
       .then(data =>
         this.setState({ list: data.results, totalProducts: data.totalProducts })
       );
+
+    // 작업을 위해서 mock 데이터 남겨둠
+    //   fetch('data/ProductData.json')
+    //     .then(result => result.json())
+    //     .then(list => this.setState({ list, totalProducts: list.length }));
   };
 
   handleViewCount = () => {
@@ -72,35 +77,41 @@ class ProductList extends Component {
       this.state;
     return (
       <section className="productList">
-        <header className="header">
-          <h1>category</h1>
-          <SideCategory />
-        </header>
-        <div className="menus">
-          <Filters filter={filter} getFilterType={this.getFilterType} />
-          <ViewController
-            view={view}
-            isClickedView={isClickedView}
-            viewType={viewType}
-            handleViewCount={this.handleViewCount}
-            getViewCount={this.getViewCount}
-            getViewType={this.getViewType}
+        <div className="productListWrapper">
+          <header className="header">
+            <h1>토이</h1>
+            <SideCategory totalProducts={totalProducts} />
+          </header>
+          <div className="menus">
+            <Filters filter={filter} getFilterType={this.getFilterType} />
+            <ViewController
+              view={view}
+              isClickedView={isClickedView}
+              viewType={viewType}
+              handleViewCount={this.handleViewCount}
+              getViewCount={this.getViewCount}
+              getViewType={this.getViewType}
+            />
+          </div>
+          <ul className="list">
+            {list.length !== 0 ? (
+              list.map(product => (
+                <Product
+                  key={product.id}
+                  product={product}
+                  viewType={viewType}
+                />
+              ))
+            ) : (
+              <strong className="none">검색결과가 없습니다.</strong>
+            )}
+          </ul>
+          <Pagination
+            pageCount={Math.ceil(totalProducts / view)}
+            getCurrentPage={this.getCurrentPage}
+            currentPage={this.state.page}
           />
         </div>
-        <ul className="list">
-          {list.length !== 0 ? (
-            list.map(product => (
-              <Product key={product.id} product={product} viewType={viewType} />
-            ))
-          ) : (
-            <strong className="none">검색결과가 없습니다.</strong>
-          )}
-        </ul>
-        <Pagination
-          pageCount={Math.ceil(totalProducts / view)}
-          getCurrentPage={this.getCurrentPage}
-          currentPage={this.state.page}
-        />
       </section>
     );
   }

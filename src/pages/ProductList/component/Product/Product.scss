@@ -13,7 +13,7 @@
       width: 14em;
       height: 14em;
       margin-bottom: 1em;
-      border-radius: 8px;
+      border-radius: 4px;
 
       &:hover ~ .hoverMenu {
         .bigHeart,
@@ -87,6 +87,13 @@
     top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    &:hover {
+      .bigHeart,
+      .more {
+        opacity: 0.8;
+      }
+    }
 
     button {
       border: none;

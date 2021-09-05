@@ -13,14 +13,14 @@ class SideCategory extends Component {
         <li>
           <a href="#" className="category">
             <span>토이</span>
-            <span>(총 388개)</span>
+            <span>(총 {this.props.totalProducts}개)</span>
           </a>
           <button className="more">
             <i className="fas fa-caret-down" />
           </button>
         </li>
         <li>
-          <a href="#">서브카테고리</a>
+          <a href="#">전체</a>
         </li>
       </ul>
     );

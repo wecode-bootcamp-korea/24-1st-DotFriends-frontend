@@ -1,36 +1,36 @@
-body {
-  display: flex;
-  justify-content: center;
-}
-
 .productList {
-  width: 1200px;
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 0.5em 1.5em 1em;
+  margin-top: 50px;
+  .productListWrapper {
+    width: 1200px;
+    margin: 0 auto;
 
-    h1 {
-      font-size: 1.5rem;
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 0.5em 1.5em 1em;
+
+      h1 {
+        font-size: 1.5rem;
+      }
     }
-  }
 
-  .menus {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 1em;
-  }
+    .menus {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 1em;
+    }
 
-  .list {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
+    .list {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
 
-    .none {
-      display: block;
-      padding: 15em 20em;
-      font-size: 1.5em;
+      .none {
+        display: block;
+        padding: 15em 20em;
+        font-size: 1.5em;
+      }
     }
   }
 }
