@@ -49,6 +49,10 @@
     .subCategory {
       padding: 0.8em 1em;
 
+      &:first-child {
+        margin-top: 0.5em;
+      }
+
       &:hover {
         background-color: rgba(189, 194, 201, 0.1);
 
