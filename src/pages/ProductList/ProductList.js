@@ -4,6 +4,7 @@ import SideCategory from './component/SideCategory/SideCategory';
 import ViewController from './component/ViewController/ViewController';
 import Product from './component/Product/Product';
 import Pagination from './component/Pagination/Pagination';
+import { PRODUCT_LIST_API } from '../../config';
 import './ProductList.scss';
 
 class ProductList extends Component {
@@ -37,7 +38,7 @@ class ProductList extends Component {
     const encoded = btoa(encodeURIComponent('1'));
 
     fetch(
-      `http://10.58.0.135:8000/category?ordering=${this.state.filter}&offset=${
+      `${PRODUCT_LIST_API}?ordering=${this.state.filter}&offset=${
         (this.state.page - 1) * this.state.view
       }&limit=${this.state.view}&encoded=${encoded}`
     )
