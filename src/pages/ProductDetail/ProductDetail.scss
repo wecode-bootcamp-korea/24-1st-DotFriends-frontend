@@ -1,0 +1,84 @@
+.productWrap {
+  position: relative;
+  overflow: hidden;
+  min-width: 1320px;
+  background-color: rgb(255, 255, 255);
+
+  .contents {
+    border: 1px solid cyan;
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+
+    .aboutProduct {
+      display: flex;
+      width: 1020px;
+      height: 964px;
+      margin: 0 auto;
+      border: 1px solid rgb(237, 237, 237);
+
+      .imgInfo {
+        border: solid 1px darkmagenta;
+        float: left;
+        width: 50%;
+        margin: -1px 0px 0px -1px;
+        padding-bottom: 75px;
+        .repImg {
+          width: 510px;
+          height: 510px;
+          overflow: hidden;
+          margin: 0 auto;
+          vertical-align: middle;
+          .bigImg {
+            position: absolute;
+            max-width: 510px;
+            max-height: 510px;
+            margin: auto;
+            vertical-align: middle;
+          }
+        }
+        .smallImages {
+          overflow: hidden;
+          margin: 15px -1px 0;
+          text-align: center;
+          list-style: none;
+          .smallImage {
+            width: 40px;
+            height: 40px;
+            list-style: none;
+          }
+        }
+      }
+
+      .details {
+        border: solid 1px blue;
+        float: right;
+        padding: 30px 39px 30px 40px;
+        width: 509px;
+        border-left: 1px solid rgb(237, 237, 237);
+      }
+    }
+    .reviewWarp {
+      border: solid 1px orangered;
+      width: 1020px;
+      margin: 0 auto;
+      padding-top: 100px;
+      .reviewTitle {
+        border-bottom: 2px solid rgb(0, 0, 0);
+      }
+      .aboutRating {
+        height: 210px;
+        padding: 35px 0 29px 32px;
+        margin: 0 30px;
+        background-color: rgb(248, 249, 251);
+        border-bottom: 1px solid rgb(119, 119, 119);
+      }
+      .reviewList {
+        width: 1020px;
+        height: 437px;
+        padding-top: 36px;
+      }
+    }
+  }
+}
