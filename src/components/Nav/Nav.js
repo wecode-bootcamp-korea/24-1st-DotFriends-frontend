@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Category from './Category';
 import './Nav.scss';
 
@@ -11,6 +11,15 @@ class Nav extends Component {
 
   handleLike = () => {
     this.setState({ isLiked: !this.state.isLiked });
+  };
+
+  handleChange = e => {
+    this.setState({ searchValue: e.target.value });
+  };
+
+  goToSearchResult = e => {
+    e.preventDefault();
+    this.props.history.push('/product-list');
   };
 
   render() {
@@ -71,11 +80,12 @@ class Nav extends Component {
           <h1 className="mainLogo">
             <Link to="/">DOT FRIENDS</Link>
           </h1>
-          <form className="searchForm">
+          <form className="searchForm" onSubmit={this.goToSearchResult}>
             <input
               type="text"
               className="search"
               placeholder="검색어를 입력해보세요"
+              onChange={this.handleChange}
             />
             <button className="searchBtn">
               <i className="fas fa-search" />
@@ -100,7 +110,7 @@ class Nav extends Component {
   }
 }
 
-export default Nav;
+export default withRouter(Nav);
 
 const MENULIST = [
   {
