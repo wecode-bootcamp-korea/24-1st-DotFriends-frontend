@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 
 class SignUpJoin extends Component {
   render() {
+    const { name, type, handleChange } = this.props;
     return (
       <div className="joinRow infoRow">
-        <h3 className="joinTitle">이름</h3>
+        <h3 className="joinTitle">{name}</h3>
         <span className="joinBox">
           <input
             className="typingArea"
-            type="text"
-            value={this.props.name}
-            onChange={this.props.onchangeName}
+            type={type}
+            onChange={e => {
+              handleChange(e.target.value);
+            }}
             loginkey={this.props.loginkey}
           />
         </span>

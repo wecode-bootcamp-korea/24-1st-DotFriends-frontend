@@ -30,19 +30,19 @@ class SignUp extends Component {
       rePw: e.target.value,
     });
   };
-  onchangeName = e => {
+  onchangeName = name => {
     this.setState({
-      name: e.target.value,
+      name,
     });
   };
-  onchangeAddress = e => {
+  onchangeAddress = address => {
     this.setState({
-      address: e.target.value,
+      address,
     });
   };
-  onchangePhone = e => {
+  onchangePhone = phone => {
     this.setState({
-      phone: e.target.value,
+      phone,
     });
   };
 
@@ -92,11 +92,24 @@ class SignUp extends Component {
   };
 
   render() {
-    const joinName = '이름';
-    const joinAddress = '주소';
-    const joinPhone = '휴대전화';
+    const INFO = [
+      {
+        name: '이름',
+        type: 'text',
+        handleChange: this.onchangeName,
+      },
+      {
+        name: '주소',
+        type: 'text',
+        handleChange: this.onchangeAddress,
+      },
+      {
+        name: '휴대전화',
+        type: 'tel',
+        handleChange: this.onchangePhone,
+      },
+    ];
 
-    const { btn } = this.state.btn;
     const check =
       this.state.id.includes('@') &&
       this.state.pw.length > 7 &&
@@ -168,11 +181,13 @@ class SignUp extends Component {
             </div>
             {/* 이름,주소,폰번호 */}
             <div className="rowGroup userInfo">
-              <SignUpJoin
+              {/* <SignUpJoin
+                joinName={joinName}
+                text={text}
                 value={this.state.name}
                 onChange={this.onchangeName}
                 loginkey={this.loginkey}
-              />
+              /> */}
               {/* <div className="joinRow infoRow">
                 <h3 className="joinTitle">이름</h3>
                 <span className="joinBox">
@@ -185,7 +200,16 @@ class SignUp extends Component {
                   />
                 </span>
               </div> */}
-              <div className="joinRow infoRow">
+              {INFO.map((input, idx) => (
+                <SignUpJoin
+                  key={idx}
+                  name={input.name}
+                  type={input.type}
+                  loginkey={this.loginkey}
+                  handleChange={input.handleChange}
+                />
+              ))}
+              {/* <div className="joinRow infoRow">
                 <h3 className="joinTitle">주소</h3>
                 <span className="joinBox">
                   <input
@@ -209,7 +233,7 @@ class SignUp extends Component {
                     loginkey={this.loginkey}
                   />
                 </span>
-              </div>
+              </div> */}
             </div>
             <div className="btnArea">
               {/* <a href="/"> */}
