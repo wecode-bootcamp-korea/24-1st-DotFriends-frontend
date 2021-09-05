@@ -57,10 +57,19 @@
           color: #888888;
         }
 
+        .cart {
+          margin-right: 1em;
+          padding: 0.3em 0.5em;
+          color: #888888;
+          font-size: 0.8rem;
+        }
+
         .login {
           margin-right: 1em;
           padding: 0.3em 0.5em;
           border: 1px solid rgba(0, 0, 0, 0.1);
+          color: #888888;
+          font-size: 0.8rem;
         }
 
         .service {
@@ -82,10 +91,35 @@
     .likedBtn {
       position: absolute;
       left: 0;
-      padding: 0.5em 2em;
+      width: 10em;
+      height: 2.5em;
       background-color: black;
       border-radius: 16px;
       color: #fff;
+
+      &.active {
+        background-color: transparent;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        color: #222;
+      }
+
+      i {
+        margin-right: 0.5em;
+      }
+    }
+
+    .followBtn {
+      position: absolute;
+      left: 11em;
+      width: 10em;
+      height: 2.5em;
+      background-color: black;
+      border-radius: 16px;
+      color: #fff;
+
+      i {
+        margin-right: 0.5em;
+      }
     }
 
     .mainLogo {

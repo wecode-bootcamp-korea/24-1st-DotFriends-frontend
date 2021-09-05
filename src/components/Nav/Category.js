@@ -16,15 +16,17 @@ class Category extends Component {
             )}
           </a>
           {category.subCategory && (
-            <ul className="subCategories">
-              {category.subCategory.map((sub, idx) => (
-                <li className="subCategory">
-                  <a href="#" key={idx}>
-                    {sub}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <div className="subCategoriesBox">
+              <ul className="subCategories">
+                {category.subCategory.map((sub, idx) => (
+                  <li className="subCategory">
+                    <a href="#" key={idx}>
+                      {sub}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </li>
       </>

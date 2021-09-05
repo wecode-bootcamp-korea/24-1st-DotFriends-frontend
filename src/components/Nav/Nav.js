@@ -4,7 +4,25 @@ import Category from './Category';
 import './Nav.scss';
 
 class Nav extends Component {
+  state = {
+    searchValue: '',
+    isLiked: false,
+  };
+
+  handleLike = () => {
+    this.setState({ isLiked: !this.state.isLiked });
+  };
+
   render() {
+    const { isLiked } = this.state;
+    const isLogined = localStorage.getItem('login-token');
+    const notDib = (
+      <div>
+        <i className="fas fa-plus" />
+        {'찜하기 181,685'}
+      </div>
+    );
+    const dib = <div>찜한 스토어</div>;
     return (
       <header className="nav">
         <div className="topWrapper">
@@ -23,19 +41,33 @@ class Nav extends Component {
               </span>
             </div>
             <div className="rightMenu">
-              <button className="login">로그인</button>
+              {isLogined && (
+                <Link to="/cart" className="cart">
+                  장바구니
+                </Link>
+              )}
+              <Link to={isLogined ? '/' : '/login'} className="login">
+                {isLogined ? '로그아웃' : '로그인'}
+              </Link>
               <button className="service">
                 <i className="fas fa-th" />
               </button>
             </div>
           </div>
         </div>
-
         <div className="headerMenu">
-          <button className="likedBtn">
-            <i className="fas fa-plus" />
-            찜하기 181,685
+          <button
+            className={`likedBtn ${isLiked ? 'active' : ''}`}
+            onClick={this.handleLike}
+          >
+            {isLiked ? dib : notDib}
           </button>
+          {isLiked && (
+            <button className="followBtn">
+              <i className="fas fa-plus" />
+              소식 받기
+            </button>
+          )}
           <h1 className="mainLogo">
             <Link to="/">DOT FRIENDS</Link>
           </h1>
