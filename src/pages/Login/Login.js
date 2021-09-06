@@ -98,17 +98,19 @@ class Login extends Component {
               </div>
             </div>
             <div className="btnLoginWrap">
-              <a href="/">
-                <button className={this.state.btn} onClick={this.handleLogin}>
-                  로그인
-                </button>
-              </a>
+              <button className={this.state.btn} onClick={this.handleLogin}>
+                로그인
+              </button>
             </div>
           </div>
           <ul className="findWrap">
             <li className="findText">비밀번호 찾기</li>
             <li className="findText">아이디 찾기</li>
-            <li className="findText">회원가입</li>
+            <li className="findText">
+              <a className="goToSignup" href="/signup">
+                회원가입
+              </a>
+            </li>
           </ul>
 
           {/* footer */}
