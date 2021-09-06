@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './SideCategory.scss';
 
 class SideCategory extends Component {
@@ -11,16 +12,16 @@ class SideCategory extends Component {
           </a>
         </li>
         <li>
-          <a href="#" className="category">
+          <Link to="/product-list" className="category">
             <span>토이</span>
             <span>(총 {this.props.totalProducts}개)</span>
-          </a>
+          </Link>
           <button className="more">
             <i className="fas fa-caret-down" />
           </button>
         </li>
         <li>
-          <a href="#">전체</a>
+          <Link to="product-list">전체</Link>
         </li>
       </ul>
     );
