@@ -6,10 +6,6 @@ class ViewController extends Component {
     this.props.getViewCount(e.target.id);
   };
 
-  getViewType = e => {
-    this.props.getViewType(e.currentTarget.id);
-  };
-
   render() {
     const { isClickedView, view, viewType } = this.props;
     return (
@@ -21,21 +17,13 @@ class ViewController extends Component {
           </button>
           {isClickedView && (
             <ul className="viewList">
-              <li className="listItem">
-                <button onClick={this.getViewCount} id="10">
-                  10개씩 보기
-                </button>
-              </li>
-              <li className="listItem">
-                <button onClick={this.getViewCount} id="20">
-                  20개씩 보기
-                </button>
-              </li>
-              <li className="listItem">
-                <button onClick={this.getViewCount} id="30">
-                  30개씩 보기
-                </button>
-              </li>
+              {PAGE_SIZE.map(size => (
+                <li className="listItem">
+                  <button onClick={this.getViewCount} id={size.id}>
+                    {size.text}
+                  </button>
+                </li>
+              ))}
             </ul>
           )}
         </div>
@@ -46,7 +34,9 @@ class ViewController extends Component {
               className={`${item.type} ${
                 item.type === viewType ? 'active' : ''
               }`}
-              onClick={this.getViewType}
+              onClick={e => {
+                this.props.getPageOption(e.currentTarget.id, 'viewType');
+              }}
               id={item.type}
               key={idx}
             >
@@ -66,4 +56,19 @@ const BTN_TYPE = [
   { type: 'imgView', icon: 'fas fa-th-large' },
   { type: 'bigImgView', icon: 'fas fa-window-restore' },
   { type: 'galleryView', icon: 'fas fa-square' },
+];
+
+const PAGE_SIZE = [
+  {
+    text: '10개씩 보기',
+    id: 10,
+  },
+  {
+    text: '20개씩 보기',
+    id: 20,
+  },
+  {
+    text: '30개씩 보기',
+    id: 30,
+  },
 ];

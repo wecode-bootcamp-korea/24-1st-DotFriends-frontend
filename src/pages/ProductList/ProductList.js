@@ -44,16 +44,16 @@ class ProductList extends Component {
     const encoded = btoa(encodeURIComponent('1'));
     const offset = (this.state.page - 1) * this.state.view;
 
-    fetch(
-      `${PRODUCT_LIST_API}?ordering=${this.state.filter}&offset=${offset}&limit=${this.state.view}&encoded=${encoded}`
-    )
-      .then(result => result.json())
-      .then(data =>
-        this.setState({
-          list: data.results,
-          totalProducts: data.totalProducts,
-        })
-      );
+    // fetch(
+    //   `${PRODUCT_LIST_API}?ordering=${this.state.filter}&offset=${offset}&limit=${this.state.view}&encoded=${encoded}`
+    // )
+    //   .then(result => result.json())
+    //   .then(data =>
+    //     this.setState({
+    //       list: data.results,
+    //       totalProducts: data.totalProducts,
+    //     })
+    //   );
 
     // 테스트 위해서 작업코드 남겨둠(임의 토큰 발급)
     // fetch(`http://10.58.0.135:8000/authorization`, {
@@ -66,9 +66,9 @@ class ProductList extends Component {
     //   .then(result => localStorage.setItem('TOKEN', result.token));
 
     // 작업을 위해서 mock 데이터 남겨둠
-    //   fetch('data/ProductData.json')
-    //     .then(result => result.json())
-    //     .then(list => this.setState({ list, totalProducts: list.length }));
+    fetch('data/ProductData.json')
+      .then(result => result.json())
+      .then(list => this.setState({ list, totalProducts: list.length }));
   };
 
   handleViewCount = () => {
@@ -79,16 +79,8 @@ class ProductList extends Component {
     this.setState({ view: Number(id), isClickedView: false });
   };
 
-  getViewType = type => {
-    this.setState({ viewType: type });
-  };
-
-  getFilterType = type => {
-    this.setState({ filter: type });
-  };
-
-  getCurrentPage = num => {
-    this.setState({ page: Number(num) });
+  getPageOption = (value, setTarget) => {
+    this.setState({ [setTarget]: value });
   };
 
   handleLike = product => {
@@ -113,14 +105,14 @@ class ProductList extends Component {
             <SideCategory totalProducts={totalProducts} />
           </header>
           <div className="menus">
-            <Filters filter={filter} getFilterType={this.getFilterType} />
+            <Filters filter={filter} getPageOption={this.getPageOption} />
             <ViewController
               view={view}
               isClickedView={isClickedView}
               viewType={viewType}
               handleViewCount={this.handleViewCount}
               getViewCount={this.getViewCount}
-              getViewType={this.getViewType}
+              getPageOption={this.getPageOption}
             />
           </div>
           <ul className="list">
@@ -139,7 +131,7 @@ class ProductList extends Component {
           </ul>
           <Pagination
             pageCount={Math.ceil(totalProducts / view)}
-            getCurrentPage={this.getCurrentPage}
+            getPageOption={this.getPageOption}
             currentPage={this.state.page}
           />
         </div>

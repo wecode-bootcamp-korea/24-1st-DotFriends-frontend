@@ -13,7 +13,9 @@ class Filters extends Component {
           >
             <button
               id={item.class}
-              onClick={e => this.props.getFilterType(e.currentTarget.id)}
+              onClick={e =>
+                this.props.getPageOption(e.currentTarget.id, 'filter')
+              }
               key={idx}
             >
               {item.type}

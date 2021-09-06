@@ -12,7 +12,7 @@ class Pagination extends Component {
             key={idx + 1}
             id={idx + 1}
             onClick={e => {
-              this.props.getCurrentPage(e.currentTarget.id);
+              this.props.getPageOption(Number(e.currentTarget.id), 'page');
             }}
           >
             {idx + 1}
