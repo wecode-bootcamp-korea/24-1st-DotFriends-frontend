@@ -7,9 +7,9 @@ class SideCategory extends Component {
     return (
       <ul className="sideCategory">
         <li>
-          <a href="#" className="home">
+          <Link to="/" className="home">
             홈
-          </a>
+          </Link>
         </li>
         <li>
           <Link to="/product-list" className="category">

@@ -38,9 +38,27 @@
         overflow: hidden;
       }
 
-      .price {
-        margin-bottom: 2em;
-        font-weight: 700;
+      .priceInfo {
+        margin-bottom: 0.5em;
+
+        .price {
+          margin: 0 0.5em 2em 0;
+          font-weight: 700;
+        }
+
+        span {
+          margin-right: 0.5em;
+          color: #888;
+          font-size: 0.8rem;
+          text-decoration: line-through;
+
+          &:last-child {
+            color: #6b90dc;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-decoration: none;
+          }
+        }
       }
     }
 
@@ -52,6 +70,11 @@
       font-size: 1rem;
       outline: none;
       border: none;
+      cursor: pointer;
+
+      .fas {
+        color: red;
+      }
     }
   }
   .evaluation {
@@ -111,6 +134,10 @@
       height: 50px;
       margin-right: 0.5em;
       border-radius: 50%;
+
+      &.active {
+        background-color: red;
+      }
     }
 
     .more {
