@@ -1,22 +1,52 @@
 .footer {
+  width: 100vw;
+  position: absolute;
+  background-color: pink;
+  height: 250px;
+  bottom: 0;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  width: 1200px;
-  background-color: tomato;
 
-  .frontEnd {
-    width: 350px;
-    background-color: teal;
+  .footerTitle {
+    width: 1200px;
+    height: 50px;
+    text-align: center;
+    line-height: 20px;
   }
 
-  .backEnd {
-    width: 350px;
-    background-color: teal;
-  }
+  .footerContainer {
+    width: 1200px;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
 
-  .wecode {
-    width: 350px;
-    background-color: teal;
+    .footerEle {
+      width: 350px;
+      height: 100px;
+
+      strong {
+        font-weight: bold;
+      }
+
+      .text {
+        margin-top: 20px;
+        color: #888888;
+        p {
+          width: 300px;
+
+          .name {
+            font-weight: bold;
+          }
+
+          span {
+            line-height: 20px;
+          }
+        }
+      }
+    }
   }
 }
