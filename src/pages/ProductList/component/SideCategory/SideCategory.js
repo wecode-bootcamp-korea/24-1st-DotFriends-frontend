@@ -4,6 +4,7 @@ import './SideCategory.scss';
 
 class SideCategory extends Component {
   render() {
+    const { totalProducts, category } = this.props;
     return (
       <ul className="sideCategory">
         <li>
@@ -13,8 +14,8 @@ class SideCategory extends Component {
         </li>
         <li>
           <Link to="/product-list" className="category">
-            <span>토이</span>
-            <span>(총 {this.props.totalProducts}개)</span>
+            <span>{category}</span>
+            <span>(총 {totalProducts}개)</span>
           </Link>
           <button className="more">
             <i className="fas fa-caret-down" />

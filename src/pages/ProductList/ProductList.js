@@ -33,28 +33,24 @@ class ProductList extends Component {
     if (this.state.page !== prevState.page) {
       this.getData();
     }
-    // if (this.props.match.params.category !== prevProps.match.params.category) {
-    //   this.getData();
-    // }
+    if (this.props.match.params.category !== prevProps.match.params.category) {
+      this.getData();
+    }
   };
 
   getData = () => {
     // 동적 라우팅 시에 사용할 코드
     const category = this.props.match.params.category
-      ? this.props.match.params.category
-      : 'new';
-
+      ? `category=${this.props.match.params.category}`
+      : 'category=new';
     const offset = `&offset=${(this.state.page - 1) * this.state.view}`;
     const limit = `&limit=${this.state.view}`;
     const filter = `&order=${this.state.filter}`;
     const search = this.props.location.search
       ? `&search=${this.props.location.search}`
       : '';
-    fetch(
-      `${PRODUCT_LIST_API}?category=${
-        category + offset + limit + filter + search
-      }`
-    )
+
+    fetch(`${PRODUCT_LIST_API + category + offset + limit + filter + search}`)
       .then(result => result.json())
       .then(data =>
         this.setState({
@@ -103,13 +99,13 @@ class ProductList extends Component {
       totalProducts,
       category,
     } = this.state;
-    console.log(this.state);
+
     return (
       <section className="productList">
         <div className="productListWrapper">
           <header className="header">
             <h1>{category}</h1>
-            <SideCategory totalProducts={totalProducts} />
+            <SideCategory totalProducts={totalProducts} category={category} />
           </header>
           <div className="menus">
             <Filters filter={filter} getPageOption={this.getPageOption} />
