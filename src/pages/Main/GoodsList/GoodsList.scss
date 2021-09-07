@@ -1,5 +1,17 @@
 @import '../../../styles/common.scss';
 
+@keyframes scale {
+  0% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
 .goodsList {
   display: flex;
   position: relative;
@@ -21,6 +33,7 @@
     display: inline-block;
     margin: 0 auto;
     font-size: xx-large;
+    animation: scale 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) forwards infinite;
   }
 
   .listConatiner {

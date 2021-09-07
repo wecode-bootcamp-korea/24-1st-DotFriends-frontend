@@ -19,7 +19,7 @@ class Main extends Component {
       headerImage: imgArr[0],
       currentSlide: 0,
       TOTAL_SLIDES: 4,
-      btn: 'scale 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) forwards',
+      count: 1,
     };
   }
 
@@ -33,6 +33,8 @@ class Main extends Component {
   componentDidMount() {
     this.findFetch('new');
     this.findFetch('sale');
+    setInterval(this.handleNextSlide, 2000);
+    setInterval(this.animationCount);
   }
 
   handlePrevSlide = () => {
@@ -51,28 +53,27 @@ class Main extends Component {
   handleNextSlide = () => {
     let { currentSlide, TOTAL_SLIDES } = this.state;
     if (currentSlide < TOTAL_SLIDES) {
-      this.setState({
-        currentSlide: currentSlide + 1,
-      });
-      console.log(this.state.btn);
-    } else {
-      this.setState({
-        currentSlide: 0,
-      });
-    }
+      this.setState({ currentSlide: currentSlide + 1 });
+    } else this.setState({ currentSlide: 0 });
   };
 
   isEmpty = param => {
     return Object.keys(param).length === 0;
   };
 
+  animationCount = () => {
+    this.setState({ count: '1' });
+  };
+
   render() {
-    const { btn, currentSlide, saleList, newList } = this.state;
+    const { currentSlide, saleList, newList } = this.state;
     return (
       <div className="main">
         <div
           className="headers"
-          style={{ backgroundImage: imgArr[currentSlide], animation: { btn } }}
+          style={{
+            backgroundImage: imgArr[currentSlide],
+          }}
         >
           <button className="pre" onClick={this.handlePrevSlide}>
             <img src="/images/pre.png" alt="pre" />
@@ -94,7 +95,7 @@ class Main extends Component {
             })}
           </div>
         </div>
-        {!this.isEmpty(saleList) && (
+        {!this.isEmpty(saleList) && !this.isEmpty(newList) && (
           <>
             <GoodsList
               title="새로 나왔어요"
