@@ -3,8 +3,23 @@
   align-items: center;
   justify-content: center;
 }
+
+@mixin button {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  opacity: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  z-index: 1;
+}
+
 * {
   box-sizing: border-box;
+  border: none;
+  outline: none;
 }
 body {
   font-family: 'Noto Sans KR', sans-serif;

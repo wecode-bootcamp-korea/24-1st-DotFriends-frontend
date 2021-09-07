@@ -1,12 +1,21 @@
+@import '../../../styles/common.scss';
+
 .goodsList {
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: space-between;
   width: 1200px;
   height: 600px;
   padding-top: 30px;
   margin: 40px auto;
-  overflow: hidden;
+
+  &:hover {
+    .pre,
+    .next {
+      opacity: 0.2;
+    }
+  }
 
   h1 {
     display: inline-block;
@@ -14,54 +23,53 @@
     font-size: xx-large;
   }
 
-  .listContainer {
-    position: relative;
-    width: 300vw;
+  .listConatiner {
+    width: 1200px;
     overflow: hidden;
 
-    .pre {
-      position: absolute;
-      width: 20px;
-      height: 100px;
-      background-color: slategray;
-      opacity: 50%;
-      top: 50%;
-      left: 0px;
-      transform: translateY(-50%);
-      z-index: 1;
-
-      &:hover {
-        background-color: black;
-        opacity: 1;
-      }
-    }
-
-    .list {
+    .totalList {
+      position: relative;
+      width: 3600px;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      float: left;
-      width: 1200px;
-      margin: 0 auto;
-    }
+      justify-content: space-evenly;
 
-    .next {
-      position: absolute;
-      width: 20px;
-      height: 100px;
-      background-color: slategray;
-      opacity: 50%;
-      top: 50%;
-      left: 1180px;
-      transform: translateY(-50%);
-      z-index: 1;
-
-      &:hover {
-        background-color: black;
-        opacity: 1;
+      .list {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        float: left;
+        width: 1200px;
       }
     }
   }
+
+  .pre {
+    @include button;
+    left: -70px;
+    opacity: 0;
+
+    &:hover {
+      opacity: 1;
+    }
+    img {
+      width: 100%;
+    }
+  }
+
+  .next {
+    @include button;
+    left: 1220px;
+    opacity: 0;
+
+    img {
+      width: 100%;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
   .radioContainer {
     text-align: center;
 

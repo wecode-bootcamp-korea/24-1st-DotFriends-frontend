@@ -35,26 +35,32 @@ class GoodsList extends Component {
     return (
       <div className="goodsList">
         <h1>{title}</h1>
-        <ul className="listContainer">
-          <div className="pre" onClick={this.handlePrevSlide}></div>
-          {[0, 4, 8].map((listELe, listIdx) => {
-            return (
-              <li
-                key={listIdx}
-                className="list"
-                style={{
-                  transform: `translateX(-${currentSlide}00%)`,
-                  transition: 'all 0.5s ease-in-out',
-                }}
-              >
-                {responseData.slice(listELe, listELe + 4).map(data => (
-                  <Goods data={data} />
-                ))}
-              </li>
-            );
-          })}
-          <div className="next" onClick={this.handleNextSlide}></div>
-        </ul>
+        <div className="listConatiner">
+          <ul className="totalList">
+            {[0, 4, 8].map((listELe, listIdx) => {
+              return (
+                <li
+                  key={listIdx}
+                  className="list"
+                  style={{
+                    transform: `translateX(-${currentSlide}00%)`,
+                    transition: 'all 0.5s ease-in-out',
+                  }}
+                >
+                  {responseData.slice(listELe, listELe + 4).map(data => (
+                    <Goods data={data} />
+                  ))}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <button className="pre" onClick={this.handlePrevSlide}>
+          <img src="/images/pre.png" alt="pre" />
+        </button>
+        <button className="next" onClick={this.handleNextSlide}>
+          <img src="/images/next.png" alt="next" />
+        </button>
 
         <div className="radioContainer">
           {[0, 1, 2].map((radio, radioIdx) => {

@@ -19,11 +19,13 @@ class Main extends Component {
       headerImage: imgArr[0],
       currentSlide: 0,
       TOTAL_SLIDES: 4,
+      btn: 'scale 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) forwards',
     };
   }
 
   findFetch(value) {
-    fetch(`http://10.58.6.29:8000/product?option=${value}&limit=12&order=?`)
+    const ipAddress = '10.58.5.129';
+    fetch(`http://${ipAddress}:8000/product?option=${value}&limit=12&order=?`)
       .then(response => response.json())
       .then(response => this.setState({ [value + 'List']: response.results }));
   }
@@ -36,18 +38,27 @@ class Main extends Component {
   handlePrevSlide = () => {
     let { currentSlide, TOTAL_SLIDES } = this.state;
     if (currentSlide > 0) {
-      this.setState({ currentSlide: currentSlide - 1 });
+      this.setState({
+        currentSlide: currentSlide - 1,
+      });
     } else {
-      this.setState({ currentSlide: TOTAL_SLIDES });
+      this.setState({
+        currentSlide: TOTAL_SLIDES,
+      });
     }
   };
 
   handleNextSlide = () => {
     let { currentSlide, TOTAL_SLIDES } = this.state;
     if (currentSlide < TOTAL_SLIDES) {
-      this.setState({ currentSlide: currentSlide + 1 });
+      this.setState({
+        currentSlide: currentSlide + 1,
+      });
+      console.log(this.state.btn);
     } else {
-      this.setState({ currentSlide: 0 });
+      this.setState({
+        currentSlide: 0,
+      });
     }
   };
 
@@ -56,25 +67,28 @@ class Main extends Component {
   };
 
   render() {
-    const { currentSlide, saleList, newList } = this.state;
+    const { btn, currentSlide, saleList, newList } = this.state;
     return (
       <div className="main">
         <div
           className="headers"
-          style={{ backgroundImage: imgArr[currentSlide] }}
+          style={{ backgroundImage: imgArr[currentSlide], animation: { btn } }}
         >
-          <div className="pre" onClick={this.handlePrevSlide}></div>
-          <div className="next" onClick={this.handleNextSlide}></div>
+          <button className="pre" onClick={this.handlePrevSlide}>
+            <img src="/images/pre.png" alt="pre" />
+          </button>
+          <button className="next" onClick={this.handleNextSlide}>
+            <img src="/images/next.png" alt="pre" />
+          </button>
           <div className="radioContainer">
-            {[0, 1, 2, 3, 4].map(radio => {
-              console.log(currentSlide);
+            {[0, 1, 2, 3, 4].map((radio, radioIdx) => {
               return (
                 <input
                   type="radio"
                   name="headerRadio"
+                  key={radioIdx}
                   checked={currentSlide === radio}
                   onChange={() => this.setState({ currentSlide: radio })}
-                  key={radio}
                 />
               );
             })}
