@@ -8,6 +8,7 @@ const imgArr = [
   "url('https://images.unsplash.com/photo-1593224647849-0ef96ecc2bdd?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJlZHxlbnwwfHwwfHdoaXRlfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60')",
   "url('https://images.unsplash.com/photo-1466637574441-749b8f19452f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8aG9tZSUyMGNvb2tpbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60')",
   "url('https://images.unsplash.com/photo-1625834317364-b32c140fd360?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGR1bWJiZWxsfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60')",
+  "url('https://images.unsplash.com/photo-1581199451876-013a48e36f1c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fG5pbnRlbmRvfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60')",
 ];
 
 const textAreaObj = {
@@ -36,6 +37,11 @@ const textAreaObj = {
     textComment: '홈 트레이닝',
     textSmallComment: '나가지 않아도 운동할 수 있어요',
   },
+  5: {
+    textTitle: '여가생활은',
+    textComment: '게임 속에서',
+    textSmallComment: '집에서도 시간이 너무 잘 가요',
+  },
 };
 
 class Main extends Component {
@@ -45,8 +51,7 @@ class Main extends Component {
       newList: {},
       saleList: {},
       currentSlide: 0,
-      TOTAL_SLIDES: 4,
-      isOn: true,
+      TOTAL_SLIDES: 5,
     };
   }
 
@@ -60,7 +65,7 @@ class Main extends Component {
   componentDidMount() {
     this.findFetch('new');
     this.findFetch('sale');
-    setInterval(this.handleNextSlide, 2000);
+    setInterval(this.handleNextSlide, 3000);
   }
 
   handlePrevSlide = () => {
@@ -83,9 +88,16 @@ class Main extends Component {
     return Object.keys(param).length === 0;
   };
 
-  handleHeaderScale = () => {
-    let { isOn } = this.state;
-    this.setState({ isOn: !isOn });
+  makeClass = current => {
+    const obj = {
+      0: 'odd',
+      1: 'even',
+      2: 'odd',
+      3: 'even',
+      4: 'odd',
+      5: 'even',
+    };
+    return obj[current];
   };
 
   render() {
@@ -93,16 +105,16 @@ class Main extends Component {
     const { currentSlide, saleList, newList } = this.state;
     return (
       <div className="main">
+        <div className="textArea">
+          <h1>{textAreaObj[currentSlide].textTitle}</h1>
+          <h1>{textAreaObj[currentSlide].textComment}</h1>
+          <p>{textAreaObj[currentSlide].textSmallComment}</p>
+        </div>
         <div
-          className={'headers' + (this.state.isOn ? ' scaleStart' : '')}
+          className={`headers ${this.makeClass(currentSlide)}`}
           style={{ backgroundImage: imgArr[currentSlide] }}
           onChange={this.handleHeaderScale}
         >
-          <div className="textArea">
-            <h1>{textAreaObj[currentSlide].textTitle}</h1>
-            <h1>{textAreaObj[currentSlide].textComment}</h1>
-            <p>{textAreaObj[currentSlide].textSmallComment}</p>
-          </div>
           <button className="pre" onClick={this.handlePrevSlide}>
             <img src="/images/pre.png" alt="pre" />
           </button>
@@ -110,7 +122,7 @@ class Main extends Component {
             <img src="/images/next.png" alt="pre" />
           </button>
           <div className="radioContainer">
-            {[0, 1, 2, 3, 4].map((radio, radioIdx) => {
+            {[0, 1, 2, 3, 4, 5].map((radio, radioIdx) => {
               return (
                 <input
                   type="radio"
