@@ -1,0 +1,195 @@
+@mixin flexBetween {
+  display: flex;
+  justify-content: space-between;
+}
+
+.detailCard {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #ededed;
+
+  .productImg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .bigImg {
+      max-width: 510px;
+      max-height: 510px;
+      margin-bottom: 15px;
+    }
+    .imgList {
+      display: flex;
+
+      .smallImg {
+        width: 40px;
+        height: 40px;
+        border: 2px solid white;
+      }
+    }
+  }
+
+  .productInfo {
+    width: 510px;
+    padding: 30px 40px;
+
+    .name {
+      width: 100%;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .price {
+      width: 100%;
+      margin-bottom: 14px;
+      color: #6b90cd;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    .pointBox {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border: 1px solid #989aa5;
+
+      .pointIntro {
+        padding: 13px 16px;
+        border-bottom: 1px solid #f4f4f4;
+        font-weight: bold;
+      }
+
+      .maxPoint {
+        @include flexBetween;
+        padding: 18px 16px 0;
+        color: #333;
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      .defaultPoint {
+        @include flexBetween;
+        padding: 6px 16px 0 24px;
+        color: #999;
+        font-size: 12px;
+      }
+
+      .tipBox {
+        margin: 15px 16px 0;
+        padding: 14px 16px;
+        background-color: #f7f8fa;
+        border: 1px solid #dce0e3;
+
+        .tipPoint {
+          @include flexBetween;
+          margin-bottom: 6px;
+          font-size: 13px;
+          font-weight: bold;
+
+          .tip {
+            color: red;
+            font-weight: bold;
+            font-style: italic;
+          }
+        }
+
+        .tipList {
+          li {
+            @include flexBetween;
+            margin-bottom: 6px;
+            color: #adadad;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+    .options {
+      margin-bottom: 26px;
+
+      span {
+        color: #333;
+        font-size: 13px;
+      }
+
+      .optionBtn {
+        padding: 10px 25px 10px 15px;
+        border: 1px solid #d2d6dd;
+
+        span::after {
+          content: '\f078';
+          margin-left: 340px;
+          font-family: 'Font Awesome 5 Free';
+          font-weight: 900;
+        }
+      }
+
+      .option {
+        padding: 10px 35px 10px 15px;
+        border: 1px solid #d2d6dd;
+      }
+    }
+    .calculator {
+      @include flexBetween;
+      margin-bottom: 24px;
+      font-size: 13px;
+
+      strong {
+        font-weight: bold;
+      }
+
+      span {
+        margin-right: 12px;
+        color: #999;
+      }
+
+      span:last-child {
+        margin: 0;
+        color: #6b90dc;
+        font-size: 18px;
+      }
+    }
+    .buttons {
+      button {
+        height: 50px;
+        color: #fff;
+        font-size: 16px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      .purchaseBtn {
+        width: 100%;
+        margin-bottom: 6px;
+        background-color: #3fc910;
+        border: 1px solid #fff;
+      }
+
+      .cartBtn,
+      .followBtn {
+        width: 50%;
+        background-color: #565656;
+        border: 1px solid #fff;
+      }
+    }
+  }
+
+  .evaluation {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+
+    span {
+      margin-right: 6px;
+      color: #555;
+      font-size: 14px;
+    }
+
+    strong {
+      margin-right: 6px;
+      font-size: 20px;
+    }
+  }
+}
