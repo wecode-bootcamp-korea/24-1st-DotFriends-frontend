@@ -9,7 +9,7 @@
 @mixin smallFonts {
   width: 100%;
   height: 17px;
-  margin: 19px 0 8px;
+  margin: 15px 0 8px;
   font-size: 14px;
   font-weight: 700;
   text-align: left;
@@ -25,7 +25,7 @@
 
 .signUp {
   width: 100%;
-  height: 100vh;
+  // height: 100vh;
   background-color: rgb(245, 246, 247);
   display: flex;
   justify-content: center;
@@ -60,7 +60,7 @@
       .rowGroup {
         overflow: hidden;
         width: 460px;
-        height: 351px;
+        height: 350px;
 
         .joinRow,
         .joinRowPw {
@@ -96,7 +96,7 @@
       }
 
       .userInfo {
-        margin-top: 20px;
+        // margin-top: 20px;
         height: 290px;
 
         .infoRow {
