@@ -6,33 +6,29 @@ class Category extends Component {
     const { category } = this.props;
     const { subCategory } = category;
     return (
-      <>
-        <li className="category">
-          <div
-            key={category.id}
-            className="categoryLink"
-            onClick={this.props.goToProductList}
-          >
-            {category.title}
-            {subCategory && subCategory.length > 0 && (
-              <i className="fas fa-chevron-down" />
-            )}
-          </div>
-          {category.subCategory && (
-            <div className="subCategoriesBox">
-              <ul className="subCategories">
-                {category.subCategory.map((sub, idx) => (
-                  <li className="subCategory">
-                    <div href="#" key={idx}>
-                      {sub}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
+      <li className="category">
+        <div
+          key={category.id}
+          className="categoryLink"
+          onClick={this.props.goToProductList}
+        >
+          {category.title}
+          {subCategory && subCategory.length > 0 && (
+            <i className="fas fa-chevron-down" />
           )}
-        </li>
-      </>
+        </div>
+        {category.subCategory && (
+          <div className="subCategoriesBox">
+            <ul className="subCategories">
+              {category.subCategory.map((sub, idx) => (
+                <li className="subCategory" key={idx}>
+                  <div>{sub}</div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </li>
     );
   }
 }
