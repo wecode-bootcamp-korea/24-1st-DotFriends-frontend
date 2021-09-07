@@ -42,7 +42,21 @@ class ProductDetail extends Component {
                 <button className="reviewBtn">한달사용리뷰</button>
               </div>
               <ul className="reviewList">
-                <li></li>
+                <li>
+                  <div className="reviewInfo">
+                    <p className="grade">
+                      평점 <i className="fas fa-star" />
+                      <span>5</span>
+                    </p>
+                    <p className="user">유저 아이디</p>
+                    <p className="option">사이즈 : 단품</p>
+                    <p classname="comment">너무 귀엽고 사랑스러워요!</p>
+                  </div>
+                  <img
+                    src="https://shop-phinf.pstatic.net/20210802_296/1627871458931kq8aG_JPEG/19943140_64080822.jpg?type=m510"
+                    alt="리뷰사진"
+                  />
+                </li>
               </ul>
             </div>
           </div>

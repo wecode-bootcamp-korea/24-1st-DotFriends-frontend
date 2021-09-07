@@ -125,6 +125,43 @@
             }
           }
         }
+
+        .reviewList {
+          li {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 60px;
+
+            .reviewInfo {
+              .grade {
+                margin-bottom: 6px;
+
+                i,
+                span {
+                  margin-right: 6px;
+                  color: red;
+                }
+              }
+
+              .user {
+                margin-bottom: 6px;
+                color: #888;
+                font-size: 12px;
+              }
+
+              .option {
+                margin-bottom: 16px;
+                color: #888;
+                font-size: 12px;
+              }
+            }
+
+            img {
+              width: 90px;
+              height: 90px;
+            }
+          }
+        }
       }
     }
   }
