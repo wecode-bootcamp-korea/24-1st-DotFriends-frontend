@@ -26,7 +26,15 @@ class Product extends Component {
   };
 
   render() {
-    const { name, price, image, id, isLiked } = this.props.product;
+    const {
+      name,
+      price,
+      image,
+      id,
+      isLiked,
+      discount_percent,
+      discounted_price,
+    } = this.props.product;
     const { viewType } = this.props;
     const randomNumber = (Math.random() * (5 - 1) + 1).toFixed(1);
 
@@ -34,15 +42,17 @@ class Product extends Component {
       <li className={`productItem ${viewType}`}>
         <div to="/" className="link">
           <Tags />
-          <img className="img" src={image} alt="미니언" />
+          <img className="img" src={image !== [] && image[0]} alt="미니언" />
           <div className="detail">
             <h3 className="name">{name}</h3>
             <div className="priceInfo">
               <strong className="price">
                 {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
               </strong>
-              {<span>39,000원</span>}
-              <span>10%</span>
+              {discounted_price > 0 && (
+                <span>{discounted_price.toLocaleString()}원</span>
+              )}
+              {discount_percent > 0 && <span>{discount_percent}%</span>}
             </div>
             <button className="smallHeart" name={id} onClick={this.handleLike}>
               <i className={`${isLiked ? 'fas' : 'far'} fa-heart`} />

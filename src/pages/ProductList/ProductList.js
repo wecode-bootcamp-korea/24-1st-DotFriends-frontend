@@ -13,9 +13,10 @@ class ProductList extends Component {
     view: 10,
     isClickedView: false,
     viewType: 'imgView',
-    filter: 'popular',
+    filter: '-popular',
     page: 1,
     totalProducts: 0,
+    category: '',
   };
 
   componentDidMount = () => {
@@ -39,20 +40,27 @@ class ProductList extends Component {
 
   getData = () => {
     // 동적 라우팅 시에 사용할 코드
-    // const category = this.props.match.params.category;
-    // const encoded = btoa(encodeURIComponent(`${category}`));
-    const encoded = btoa(encodeURIComponent('1'));
-    const offset = (this.state.page - 1) * this.state.view;
+    const category = this.props.match.params.category
+      ? this.props.match.params.category
+      : 'new';
 
+    const offset = `&offset=${(this.state.page - 1) * this.state.view}`;
+    const limit = `&limit=${this.state.view}`;
+    const filter = `&order=${this.state.filter}`;
+    const search = this.props.location.search
+      ? `&search=${this.props.location.search}`
+      : '';
     fetch(
-      `${PRODUCT_LIST_API}?ordering=${this.state.filter}&offset=${offset}&limit=${this.state.view}&encoded=${encoded}`,
-      { headers: { authorization: localStorage.getItem('TOKEN') } }
+      `${PRODUCT_LIST_API}?category=${
+        category + offset + limit + filter + search
+      }`
     )
       .then(result => result.json())
       .then(data =>
         this.setState({
           list: data.results,
-          totalProducts: data.totalProducts,
+          totalProducts: data.count,
+          category: data.category,
         })
       );
 
@@ -86,13 +94,21 @@ class ProductList extends Component {
   };
 
   render() {
-    const { list, view, isClickedView, viewType, filter, totalProducts } =
-      this.state;
+    const {
+      list,
+      view,
+      isClickedView,
+      viewType,
+      filter,
+      totalProducts,
+      category,
+    } = this.state;
+    console.log(this.state);
     return (
       <section className="productList">
         <div className="productListWrapper">
           <header className="header">
-            <h1>토이</h1>
+            <h1>{category}</h1>
             <SideCategory totalProducts={totalProducts} />
           </header>
           <div className="menus">

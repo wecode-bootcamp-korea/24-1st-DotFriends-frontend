@@ -30,7 +30,7 @@ class Filters extends Component {
 export default Filters;
 
 const FILTERS = [
-  { type: '인기도순', class: 'popular' },
+  { type: '인기도순', class: '-popular' },
   { type: '낮은가격순', class: 'price' },
   { type: '높은가격순', class: '-price' },
   { type: '최신등록순', class: '-updated_at' },
