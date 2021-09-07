@@ -3,12 +3,40 @@ import GoodsList from './GoodsList/GoodsList';
 import './Main.scss';
 
 const imgArr = [
-  "url('https://images.unsplash.com/photo-1528255671579-01b9e182ed1d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODB8fGhvbWUlMjB3ZWlnaHR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60')",
+  "url('https://images.unsplash.com/photo-1585832770485-e68a5dbfad52?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8d29yayUyMGZyb20lMjBob21lfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60')",
   "url('https://images.unsplash.com/photo-1600694795720-8f56ce39c094?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzJ8fHN0dWRpbyUyMGJlZHxlbnwwfHwwfHdoaXRlfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60')",
   "url('https://images.unsplash.com/photo-1593224647849-0ef96ecc2bdd?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJlZHxlbnwwfHwwfHdoaXRlfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60')",
-  "url('https://images.unsplash.com/photo-1523755231516-e43fd2e8dca5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvbWUlMjB3b3Jrb3V0JTIwaW5zdHJ1Y3R1cmV8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60')",
+  "url('https://images.unsplash.com/photo-1466637574441-749b8f19452f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8aG9tZSUyMGNvb2tpbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60')",
   "url('https://images.unsplash.com/photo-1625834317364-b32c140fd360?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGR1bWJiZWxsfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60')",
 ];
+
+const textAreaObj = {
+  0: {
+    textTitle: '출근하지',
+    textComment: '않아도 돼',
+    textSmallComment: '노트북으로 재택근무해요',
+  },
+  1: {
+    textTitle: '집에서도',
+    textComment: '심심하지 않아',
+    textSmallComment: '나만의 DLY작품을 만들어요',
+  },
+  2: {
+    textTitle: '혼자하는',
+    textComment: '힐링타임',
+    textSmallComment: '침대에서 뒹굴어요',
+  },
+  3: {
+    textTitle: '심심할 땐',
+    textComment: '요리해요',
+    textSmallComment: '사먹지 않고 만들어 먹어요',
+  },
+  4: {
+    textTitle: '혼자하는',
+    textComment: '홈 트레이닝',
+    textSmallComment: '나가지 않아도 운동할 수 있어요',
+  },
+};
 
 class Main extends Component {
   constructor() {
@@ -16,10 +44,9 @@ class Main extends Component {
     this.state = {
       newList: {},
       saleList: {},
-      headerImage: imgArr[0],
       currentSlide: 0,
       TOTAL_SLIDES: 4,
-      count: 1,
+      isOn: true,
     };
   }
 
@@ -34,7 +61,6 @@ class Main extends Component {
     this.findFetch('new');
     this.findFetch('sale');
     setInterval(this.handleNextSlide, 2000);
-    setInterval(this.animationCount);
   }
 
   handlePrevSlide = () => {
@@ -43,11 +69,7 @@ class Main extends Component {
       this.setState({
         currentSlide: currentSlide - 1,
       });
-    } else {
-      this.setState({
-        currentSlide: TOTAL_SLIDES,
-      });
-    }
+    } else this.setState({ currentSlide: TOTAL_SLIDES });
   };
 
   handleNextSlide = () => {
@@ -61,20 +83,26 @@ class Main extends Component {
     return Object.keys(param).length === 0;
   };
 
-  animationCount = () => {
-    this.setState({ count: '1' });
+  handleHeaderScale = () => {
+    let { isOn } = this.state;
+    this.setState({ isOn: !isOn });
   };
 
   render() {
+    console.log(this.state.isOn);
     const { currentSlide, saleList, newList } = this.state;
     return (
       <div className="main">
         <div
-          className="headers"
-          style={{
-            backgroundImage: imgArr[currentSlide],
-          }}
+          className={'headers' + (this.state.isOn ? ' scaleStart' : '')}
+          style={{ backgroundImage: imgArr[currentSlide] }}
+          onChange={this.handleHeaderScale}
         >
+          <div className="textArea">
+            <h1>{textAreaObj[currentSlide].textTitle}</h1>
+            <h1>{textAreaObj[currentSlide].textComment}</h1>
+            <p>{textAreaObj[currentSlide].textSmallComment}</p>
+          </div>
           <button className="pre" onClick={this.handlePrevSlide}>
             <img src="/images/pre.png" alt="pre" />
           </button>
@@ -89,7 +117,9 @@ class Main extends Component {
                   name="headerRadio"
                   key={radioIdx}
                   checked={currentSlide === radio}
-                  onChange={() => this.setState({ currentSlide: radio })}
+                  onChange={() => {
+                    this.setState({ currentSlide: radio });
+                  }}
                 />
               );
             })}
