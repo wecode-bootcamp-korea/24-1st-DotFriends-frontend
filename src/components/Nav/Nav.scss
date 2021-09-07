@@ -1,21 +1,5 @@
 .nav {
   width: 100%;
-  // common으로 옮길 부분
-  a {
-    text-decoration: none;
-    color: black;
-  }
-
-  button {
-    background: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-  }
-
-  input {
-    outline: none;
-  }
 
   .topWrapper {
     width: 100%;
@@ -154,15 +138,19 @@
     .categoriesWrapper {
       display: flex;
       justify-content: space-between;
+      align-items: flex-start;
       width: 1200px;
       margin: 0 auto;
       .categories {
         display: flex;
       }
 
-      .more i {
-        margin-left: 1em;
-        font-size: 0.5rem;
+      .more {
+        font-size: 0.9rem;
+        i {
+          margin-left: 1em;
+          font-size: 0.5rem;
+        }
       }
     }
   }

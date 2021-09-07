@@ -22,9 +22,13 @@ class Nav extends Component {
     this.props.history.push('/product-list');
   };
 
+  goToProductList = e => {
+    this.props.history.push(`/product-list/${e}`);
+  };
+
   render() {
     const { isLiked } = this.state;
-    const isLogined = localStorage.getItem('login-token');
+    const isLogined = localStorage.getItem('TOKEN');
     const notDib = (
       <div>
         <i className="fas fa-plus" />
@@ -96,7 +100,10 @@ class Nav extends Component {
           <div className="categoriesWrapper">
             <ul className="categories">
               {MENULIST.map(category => (
-                <Category category={category} />
+                <Category
+                  category={category}
+                  goToProductList={this.goToProductList}
+                />
               ))}
             </ul>
             <button className="more">
