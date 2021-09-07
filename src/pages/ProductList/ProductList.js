@@ -44,31 +44,22 @@ class ProductList extends Component {
     const encoded = btoa(encodeURIComponent('1'));
     const offset = (this.state.page - 1) * this.state.view;
 
-    // fetch(
-    //   `${PRODUCT_LIST_API}?ordering=${this.state.filter}&offset=${offset}&limit=${this.state.view}&encoded=${encoded}`
-    // )
-    //   .then(result => result.json())
-    //   .then(data =>
-    //     this.setState({
-    //       list: data.results,
-    //       totalProducts: data.totalProducts,
-    //     })
-    //   );
-
-    // 테스트 위해서 작업코드 남겨둠(임의 토큰 발급)
-    // fetch(`http://10.58.0.135:8000/authorization`, {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     user_id: 1,
-    //   }),
-    // })
-    //   .then(response => response.json())
-    //   .then(result => localStorage.setItem('TOKEN', result.token));
+    fetch(
+      `${PRODUCT_LIST_API}?ordering=${this.state.filter}&offset=${offset}&limit=${this.state.view}&encoded=${encoded}`,
+      { headers: { authorization: localStorage.getItem('TOKEN') } }
+    )
+      .then(result => result.json())
+      .then(data =>
+        this.setState({
+          list: data.results,
+          totalProducts: data.totalProducts,
+        })
+      );
 
     // 작업을 위해서 mock 데이터 남겨둠
-    fetch('data/ProductData.json')
-      .then(result => result.json())
-      .then(list => this.setState({ list, totalProducts: list.length }));
+    // fetch('data/ProductData.json')
+    //   .then(result => result.json())
+    //   .then(list => this.setState({ list, totalProducts: list.length }));
   };
 
   handleViewCount = () => {
@@ -116,7 +107,7 @@ class ProductList extends Component {
             />
           </div>
           <ul className="list">
-            {list.length !== 0 ? (
+            {list && list.length !== 0 ? (
               list.map(product => (
                 <Product
                   key={product.id}

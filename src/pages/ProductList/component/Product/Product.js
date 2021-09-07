@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import Tags from '../Tags/Tags';
 import './Product.scss';
 
 class Product extends Component {
   handleLike = e => {
-    // 찜하기 테스트 하면서 남겨둔 코드
-    // fetch(`http://10.58.0.135:8000/userproductlikes`, {
-    //   method: 'POST',
-    //   headers: { authorization: localStorage.getItem('TOKEN') },
-    //   body: JSON.stringify({
-    //     isLiked: this.props.product.isLiked,
-    //     productId: e.currentTarget.name,
-    //   }),
-    // })
-    //   .then(response => response.json())
-    //   .then(result => console.log('결과: ', result));
-    this.props.handleLike(this.props.product);
+    fetch(`http://10.58.0.135:8000/userproductlikes`, {
+      method: 'POST',
+      headers: { authorization: localStorage.getItem('TOKEN') },
+      body: JSON.stringify({
+        isLiked: this.props.product.isLiked,
+        productId: e.currentTarget.name,
+      }),
+    })
+      .then(response => response.json())
+      .then(result => {
+        if (result.MESSAGE === 'CREATED') {
+          this.props.handleLike(this.props.product);
+        } else {
+          alert('로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?');
+          this.props.history.push('/login');
+        }
+      });
+    // this.props.handleLike(this.props.product);
   };
 
   render() {
@@ -71,4 +78,4 @@ class Product extends Component {
   }
 }
 
-export default Product;
+export default withRouter(Product);
