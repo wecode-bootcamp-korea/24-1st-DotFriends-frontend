@@ -8,6 +8,21 @@ class Nav extends Component {
   state = {
     searchValue: '',
     isLiked: false,
+    isLogined: false,
+  };
+
+  componentDidMount = () => {
+    localStorage.getItem('TOKEN') &&
+      this.setState({ isLogined: !this.state.isLogined });
+  };
+
+  handleLogin = () => {
+    if (this.state.isLogined) {
+      localStorage.removeItem('TOKEN');
+      this.setState({ isLogined: false });
+    } else {
+      this.props.history.push('/login');
+    }
   };
 
   handleLike = () => {
@@ -28,8 +43,7 @@ class Nav extends Component {
   };
 
   render() {
-    const { isLiked } = this.state;
-    const isLogined = localStorage.getItem('TOKEN');
+    const { isLiked, isLogined } = this.state;
     const unfollowedStore = (
       <div>
         <i className="fas fa-plus" />
@@ -60,9 +74,9 @@ class Nav extends Component {
                   장바구니
                 </Link>
               )}
-              <Link to={isLogined ? '/' : '/login'} className="login">
+              <div className="login" onClick={this.handleLogin}>
                 {isLogined ? '로그아웃' : '로그인'}
-              </Link>
+              </div>
               <button className="service">
                 <i className="fas fa-th" />
               </button>
