@@ -9,3 +9,19 @@
 body {
   font-family: 'Noto Sans KR', sans-serif;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+button {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+input {
+  outline: none;
+}
