@@ -73,7 +73,7 @@ class SignUp extends Component {
       body: JSON.stringify({
         email: this.state.id,
         password: this.state.pw,
-        check_password: this.state.rePw, //패스워드체크 물어보기
+        check_password: this.state.rePw,
         name: this.state.name,
         address: this.state.address,
         phone_number: this.state.phone,
@@ -84,8 +84,6 @@ class SignUp extends Component {
         if (result.MESSAGE === 'CREATE') {
           alert(`${this.state.id}님, 가입을 환영합니다.`);
           console.log(result);
-          // localStorage.setItem('dot-token', result.token);
-          // this.props.history.push('/');
         } else {
           alert('조건에 맞게 기입해주세요.');
           console.log(result);
