@@ -1,0 +1,103 @@
+@import '../../../styles/common.scss';
+
+@keyframes scale {
+  0% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+.goodsList {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 1200px;
+  height: 600px;
+  padding-top: 30px;
+  margin: 40px auto;
+
+  &:hover {
+    .pre,
+    .next {
+      opacity: 0.2;
+    }
+  }
+
+  h1 {
+    display: inline-block;
+    margin: 0 auto;
+    font-size: xx-large;
+    animation: scale 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) forwards infinite;
+  }
+
+  .listConatiner {
+    width: 1200px;
+    overflow: hidden;
+
+    .totalList {
+      position: relative;
+      width: 3600px;
+      display: flex;
+      justify-content: space-evenly;
+
+      .list {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        float: left;
+        width: 1200px;
+      }
+    }
+  }
+
+  .pre {
+    @include button;
+    left: -70px;
+    opacity: 0;
+
+    &:hover {
+      opacity: 1;
+    }
+    img {
+      width: 100%;
+    }
+  }
+
+  .next {
+    @include button;
+    left: 1220px;
+    opacity: 0;
+
+    img {
+      width: 100%;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .radioContainer {
+    text-align: center;
+
+    input[type='radio'] {
+      appearance: none;
+      background-color: #2f2f2f;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      opacity: 30%;
+      margin: 10px;
+      border: none;
+      &:checked {
+        opacity: 1;
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+.goods {
+  width: 250px;
+  height: 450px;
+  display: inline-block;
+
+  .goodsImg {
+    width: 250px;
+    height: 250px;
+    margin: 50px 0;
+    border-radius: 5%;
+    border: none;
+  }
+  .goodsName {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-weight: 900;
+  }
+}
