@@ -45,6 +45,7 @@
     background-color: #fff;
     transform: translateX(-37.5%);
     overflow-y: auto;
+    z-index: 2;
 
     .subCategory {
       padding: 0.8em 1em;
