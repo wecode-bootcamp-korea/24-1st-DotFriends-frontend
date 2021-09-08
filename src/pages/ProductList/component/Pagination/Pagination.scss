@@ -1,0 +1,22 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1200px;
+  margin: 3em 0;
+
+  .page {
+    width: 3em;
+    height: 3em;
+    background: transparent;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    cursor: pointer;
+
+    &.current {
+      background-color: black;
+      color: #fff;
+    }
+  }
+}
