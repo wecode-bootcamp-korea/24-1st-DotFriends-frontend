@@ -3,10 +3,10 @@ import './Goods.scss';
 
 class Goods extends Component {
   render() {
-    const { name, images } = this.props.data;
+    const { name, image } = this.props.data;
     return (
       <div className="goods">
-        <img src={images[0]} alt="나와라" className="goodsImg" />
+        <img src={image[0]} alt="나와라" className="goodsImg" />
         <h2 className="goodsName">{name}</h2>
       </div>
     );
