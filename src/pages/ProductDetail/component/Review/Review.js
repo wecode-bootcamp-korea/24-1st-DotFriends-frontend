@@ -5,7 +5,7 @@ import './Review.scss';
 class Review extends Component {
   render() {
     return (
-      <li className="review">
+      <li className="Review">
         <div className="reviewInfo">
           <div className="grade">
             <Star grade={5} />
