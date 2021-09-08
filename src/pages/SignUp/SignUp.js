@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './SignUp.scss';
 import SignUpJoin from './SignUpJoin';
+import SingUpIdPw from './SingUpIdPw';
 
 class SignUp extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class SignUp extends Component {
     };
   }
   onchangeId = e => {
+    console.log(213);
     this.setState({
       id: e.target.value,
     });
@@ -110,6 +112,34 @@ class SignUp extends Component {
       },
     ];
 
+    const idCheck = this.state.id !== '' && !this.state.id.includes('@');
+    const pwCheck = this.state.pw !== '' && this.state.pw.length < 7;
+    const rePwCheck = pwCheck && this.state.pw !== this.state.rePw;
+
+    const IDPW = [
+      {
+        name: '아이디',
+        type: 'text',
+        idAlert: '이메일 양식으로 입력해주세요.',
+        idPwCheck: idCheck,
+        onchange: this.onchangeId,
+      },
+      {
+        name: '비밀번호',
+        type: 'password',
+        idAlert: '8자 이상 영문 대 소문자, 숫자, 특수문자를 사용하세요.',
+        idPwCheck: pwCheck,
+        onchange: this.onchangePw,
+      },
+      {
+        name: '비밀번호 재확인',
+        type: 'password',
+        idAlert: '비밀번호가 일치하지 않습니다.',
+        idPwCheck: rePwCheck,
+        onchange: this.onchangeRePw,
+      },
+    ];
+
     const check =
       this.state.id.includes('@') &&
       this.state.pw.length > 7 &&
@@ -119,9 +149,8 @@ class SignUp extends Component {
       this.state.phone !== ''
         ? true
         : false;
-    console.log(check);
-    // this.loginkey();
-    console.log(this.state);
+    // console.log(this.state);
+
     return (
       <div className="signUp">
         <div className="signUpWrap">
@@ -135,71 +164,25 @@ class SignUp extends Component {
           <div className="container">
             {/* 아이디,비번,비번재확인 */}
             <div className="rowGroup">
-              <div className="joinRow">
-                <h3 className="joinTitle">아이디</h3>
-                <span className="joinBox">
-                  <input
-                    className="typingArea"
-                    type="text"
-                    value={this.state.id}
-                    onChange={this.onchangeId}
+              {IDPW.map((row, idx) => {
+                console.log(row.idPwCheck);
+                return (
+                  <SingUpIdPw
+                    key={idx}
+                    name={row.name}
+                    type={row.type}
+                    // value={this.state.id}
+                    onchange={row.onchange}
                     loginkey={this.loginkey}
-                  ></input>
-                </span>
-                <span className="errorNextBox">
-                  이메일 양식으로 입력해주세요.
-                </span>
-              </div>
-              <div className="joinRowPw">
-                <h3 className="joinTitle">비밀번호</h3>
-                <span className="joinBox">
-                  <input
-                    className="typingArea"
-                    type="password"
-                    onChange={this.onchangePw}
-                    loginkey={this.loginkey}
+                    idPwCheck={row.idPwCheck}
+                    idAlert={row.idAlert}
                   />
-                </span>
-                <span className="lockIcon"></span>
-                <span className="errorNextBox">
-                  8자 이상 영문 대 소문자, 숫자, 특수문자를 사용하세요.
-                </span>
-                <h3 className="joinTitle">비밀번호 재확인</h3>
-                <span className="joinBox">
-                  <input
-                    className="typingArea"
-                    type="password"
-                    onChange={this.onchangeRePw}
-                    loginkey={this.loginkey}
-                  />
-                </span>
-                <span className="lockoutIcon"></span>
-                <span className="errorNextBox">
-                  비밀번호가 일치하지 않습니다.
-                </span>
-              </div>
+                );
+              })}
             </div>
+
             {/* 이름,주소,폰번호 */}
             <div className="rowGroup userInfo">
-              {/* <SignUpJoin
-                joinName={joinName}
-                text={text}
-                value={this.state.name}
-                onChange={this.onchangeName}
-                loginkey={this.loginkey}
-              /> */}
-              {/* <div className="joinRow infoRow">
-                <h3 className="joinTitle">이름</h3>
-                <span className="joinBox">
-                  <input
-                    className="typingArea"
-                    type="text"
-                    value={this.state.name}
-                    onChange={this.onchangeName}
-                    loginkey={this.loginkey}
-                  />
-                </span>
-              </div> */}
               {INFO.map((input, idx) => (
                 <SignUpJoin
                   key={idx}
@@ -209,34 +192,8 @@ class SignUp extends Component {
                   handleChange={input.handleChange}
                 />
               ))}
-              {/* <div className="joinRow infoRow">
-                <h3 className="joinTitle">주소</h3>
-                <span className="joinBox">
-                  <input
-                    className="typingArea"
-                    type="text"
-                    value={this.state.address}
-                    onChange={this.onchangeAddress}
-                    loginkey={this.loginkey}
-                  />
-                </span>
-              </div>
-              <div className="joinRow infoRow">
-                <h3 className="joinTitle">휴대전화</h3>
-                <span className="joinBox">
-                  <input
-                    className="typingArea"
-                    type="tel"
-                    placeholder="전화번호 입력"
-                    value={this.state.phone}
-                    onChange={this.onchangePhone}
-                    loginkey={this.loginkey}
-                  />
-                </span>
-              </div> */}
             </div>
             <div className="btnArea">
-              {/* <a href="/"> */}
               <button
                 className={check ? 'activeBtnSignUp' : 'btnSignUp'}
                 onClick={this.handleSignUp}
@@ -244,7 +201,6 @@ class SignUp extends Component {
               >
                 가입하기
               </button>
-              {/* </a> */}
             </div>
           </div>
           {/* footer */}
