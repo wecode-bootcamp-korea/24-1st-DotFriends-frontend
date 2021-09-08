@@ -2,13 +2,31 @@ import React, { Component } from 'react';
 import DetailCard from './component/DetailCard/DetailCard';
 import Review from './component/Review/Review';
 import Star from './component/Star/Star';
+import { BASE_URL } from '../../config';
 import './ProductDetail.scss';
+
 class ProductDetail extends Component {
   state = {
     selectedMenu: 'review',
     selectedReviewMenu: 'all',
     isClickedOption: false,
     isSelected: false,
+    product: {},
+    count: 0,
+  };
+
+  componentDidMount = () => {
+    //   fetch('/data/ProductDetail.json')
+    //     .then(res => res.json())
+    //     .then(res => this.setState({ product: res.results }));
+    // };
+    fetch(`${BASE_URL}/product/${this.props.match.params.id}`)
+      .then(result => result.json())
+      .then(result =>
+        this.setState({
+          product: result.results,
+        })
+      );
   };
 
   handleOption = () => {
@@ -20,7 +38,9 @@ class ProductDetail extends Component {
   };
 
   render() {
-    const { selectedMenu, selectedReviewMenu, isClickedOption } = this.state;
+    const { selectedMenu, selectedReviewMenu, isClickedOption, product } =
+      this.state;
+    console.log(this.state);
     return (
       <section className="productDetail">
         <div className="detailWrapper">
@@ -28,6 +48,7 @@ class ProductDetail extends Component {
             isClicked={isClickedOption}
             handleOption={this.handleOption}
             selectOption={this.selectOption}
+            product={product}
           />
           <div className="menus">
             {DETAIL_MENU.map((menu, idx) => (

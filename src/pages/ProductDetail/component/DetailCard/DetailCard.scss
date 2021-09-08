@@ -16,8 +16,8 @@
     align-items: center;
 
     .bigImg {
-      max-width: 510px;
-      max-height: 510px;
+      max-width: 500px;
+      max-height: 500px;
       margin-bottom: 15px;
     }
     .imgList {
@@ -132,6 +132,7 @@
         padding: 10px 35px 10px 15px;
         border: 1px solid #d2d6dd;
         cursor: pointer;
+
         &.show {
           display: block;
         }
@@ -139,14 +140,48 @@
     }
 
     .selectedProduct {
-      .btnBox {
-        border: 1px solid #dde0e3;
+      position: relative;
+      margin-bottom: 24px;
+      padding: 15px 15px 15px 0;
+      border-bottom: 1px solid #222;
+      border-top: 1px solid #222;
 
-        button {
-          width: 34px;
-          height: 34px;
-          font-size: 24px;
-          border: none;
+      .option {
+        margin-bottom: 12px;
+      }
+
+      .btnAndPrice {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .btnBox {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 116px;
+          border: 1px solid #dde0e3;
+
+          button {
+            width: 34px;
+            height: 34px;
+            background-color: #f1f2f4;
+            font-size: 24px;
+            border: none;
+          }
+        }
+
+        .totlaPrice {
+          font-weight: bold;
+        }
+      }
+
+      .delete {
+        i {
+          position: absolute;
+          top: 48%;
+          right: 0;
+          font-size: 16px;
         }
       }
     }

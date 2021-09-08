@@ -3,49 +3,24 @@ import './DetailCard.scss';
 
 class DetailCard extends Component {
   render() {
-    const { isClicked, handleOption, selectOption } = this.props;
+    const { isClicked, handleOption, selectOption, product } = this.props;
+    const { images, name, price, reviews } = product;
     return (
       <div className="detailCard">
         <div className="productImg">
-          <img
-            src="https://shop-phinf.pstatic.net/20210802_296/1627871458931kq8aG_JPEG/19943140_64080822.jpg?type=m510"
-            alt="제품 사진"
-            className="bigImg"
-          />
+          <img src={images && images[0]} alt="제품 사진" className="bigImg" />
           <ul className="imgList">
-            <li>
-              <img
-                src="https://shop-phinf.pstatic.net/20210802_296/1627871458931kq8aG_JPEG/19943140_64080822.jpg?type=m510"
-                alt="제품사진"
-                className="smallImg"
-              />
-            </li>
-            <li>
-              <img
-                src="https://shop-phinf.pstatic.net/20210802_296/1627871458931kq8aG_JPEG/19943140_64080822.jpg?type=m510"
-                alt="제품사진"
-                className="smallImg"
-              />
-            </li>
-            <li>
-              <img
-                src="https://shop-phinf.pstatic.net/20210802_296/1627871458931kq8aG_JPEG/19943140_64080822.jpg?type=m510"
-                alt="제품사진"
-                className="smallImg"
-              />
-            </li>
-            <li>
-              <img
-                src="https://shop-phinf.pstatic.net/20210802_296/1627871458931kq8aG_JPEG/19943140_64080822.jpg?type=m510"
-                alt="제품사진"
-                className="smallImg"
-              />
-            </li>
+            {images &&
+              images.map((image, idx) => (
+                <li key={idx}>
+                  <img src={image} alt="제품사진" className="smallImg" />
+                </li>
+              ))}
           </ul>
         </div>
         <div className="productInfo">
-          <h1 className="name">라인프렌즈 코니 생일 축하 인형</h1>
-          <p className="price">{23000}원</p>
+          <h1 className="name">{name}</h1>
+          <p className="price">{price && price.toLocaleString()}원</p>
           <div className="pointBox">
             <div className="pointIntro">
               <strong>라인 프렌즈 고객을 위한 혜택</strong>
@@ -93,12 +68,20 @@ class DetailCard extends Component {
             </div>
           </div>
           <div className="selectedProduct">
-            <span>단품</span>
-            <div className="btnBox">
-              <button className="minus">-</button>
-              <span className="count">1</span>
-              <button className="plus">+</button>
+            <p className="option">단품</p>
+            <div className="btnAndPrice">
+              <div className="btnBox">
+                <button className="minus">-</button>
+                <span className="count">1</span>
+                <button className="plus">+</button>
+              </div>
+              <span className="totlaPrice">
+                {price && price.toLocaleString()}원
+              </span>
             </div>
+            <button className="delete">
+              <i className="fas fa-times" />
+            </button>
           </div>
           <div className="calculator">
             <strong>총 상품 금액</strong>
@@ -115,7 +98,7 @@ class DetailCard extends Component {
         </div>
         <div className="evaluation">
           <span>리뷰슈</span>
-          <strong>11</strong>
+          <strong>{reviews && reviews.length}</strong>
           <span>사용자 평점</span>
           <strong>5.0</strong>
           <span>/</span>
