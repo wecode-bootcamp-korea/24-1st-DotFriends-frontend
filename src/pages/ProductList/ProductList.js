@@ -59,11 +59,6 @@ class ProductList extends Component {
           category: data.category,
         })
       );
-
-    // 작업을 위해서 mock 데이터 남겨둠
-    // fetch('data/ProductData.json')
-    //   .then(result => result.json())
-    //   .then(list => this.setState({ list, totalProducts: list.length }));
   };
 
   handleViewCount = () => {
