@@ -46,7 +46,7 @@ class ProductList extends Component {
     // 동적 라우팅 시에 사용할 코드
     const category = this.props.match.params.category
       ? `category=${this.props.match.params.category}`
-      : 'category=new';
+      : '';
     const offset = `&offset=${(this.state.page - 1) * this.state.view}`;
     const limit = `&limit=${this.state.view}`;
     const filter = `&order=${this.state.filter}`;
