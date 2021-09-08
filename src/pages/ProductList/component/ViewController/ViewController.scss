@@ -1,0 +1,61 @@
+.disapear {
+  display: none;
+}
+
+.viewController {
+  display: flex;
+
+  button {
+    background: transparent;
+    border: none;
+    letter-spacing: 0.1em;
+    outline: none;
+    cursor: pointer;
+
+    span::before {
+      content: '\f0d7';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      margin-left: 0.5em;
+    }
+  }
+
+  .viewCount {
+    position: relative;
+    padding: 0 0.5em;
+
+    .viewList {
+      position: absolute;
+      padding: 0.5em 0;
+      border: 1px solid black;
+      background-color: #fff;
+      z-index: 1;
+
+      .listItem {
+        padding: 0.5em 0.5em;
+
+        &:hover {
+          background-color: #f5f7fd;
+
+          button {
+            color: #6b90dc;
+          }
+        }
+      }
+    }
+  }
+
+  .controller {
+    button {
+      width: 2em;
+      height: 2em;
+      border: 1px solid #e0e0e0;
+      color: #8f8f8f;
+    }
+
+    .active {
+      background-color: black;
+      color: #fff;
+    }
+  }
+}
