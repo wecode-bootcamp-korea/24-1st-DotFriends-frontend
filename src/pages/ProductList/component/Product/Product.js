@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import Tags from '../Tags/Tags';
+import { BASE_URL } from '../../../../config';
 import './Product.scss';
 
 class Product extends Component {
   handleLike = e => {
-    fetch(`http://10.58.0.135:8000/userproductlikes`, {
+    fetch(`${BASE_URL}/userproductlikes`, {
       method: 'POST',
       headers: { authorization: localStorage.getItem('TOKEN') },
       body: JSON.stringify({
@@ -22,7 +23,6 @@ class Product extends Component {
           this.props.history.push('/login');
         }
       });
-    // this.props.handleLike(this.props.product);
   };
 
   render() {
@@ -34,25 +34,32 @@ class Product extends Component {
       isLiked,
       discount_percent,
       discounted_price,
+      avg_rate,
+      review_count,
+      is_New,
     } = this.props.product;
     const { viewType } = this.props;
-    const randomNumber = (Math.random() * (5 - 1) + 1).toFixed(1);
 
     return (
       <li className={`productItem ${viewType}`}>
         <div to="/" className="link">
-          <Tags />
+          <Tags isNew={is_New} />
           <img className="img" src={image !== [] && image[0]} alt="미니언" />
           <div className="detail">
             <h3 className="name">{name}</h3>
             <div className="priceInfo">
-              <strong className="price">
-                {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
+              <strong className="disCountedPrice">
+                {discounted_price
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                원
               </strong>
-              {discounted_price > 0 && (
-                <span>{discounted_price.toLocaleString()}원</span>
+              {discount_percent > 0 && (
+                <span className="price">{price.toLocaleString()}원</span>
               )}
-              {discount_percent > 0 && <span>{discount_percent}%</span>}
+              {discount_percent > 0 && (
+                <span className="discountedPercent">{discount_percent}%</span>
+              )}
             </div>
             <button className="smallHeart" name={id} onClick={this.handleLike}>
               <i className={`${isLiked ? 'fas' : 'far'} fa-heart`} />
@@ -74,11 +81,11 @@ class Product extends Component {
         <div className="evaluation">
           <div className="reviewWrapper">
             <span className="review">리뷰</span>
-            <em>12</em>
+            <em>{review_count}</em>
           </div>
           <div className="gradeWrapper">
             <span className="grade">평점</span>
-            <em>{randomNumber}</em>
+            <em>{avg_rate}</em>
             <span>/</span>
             <span>5</span>
           </div>

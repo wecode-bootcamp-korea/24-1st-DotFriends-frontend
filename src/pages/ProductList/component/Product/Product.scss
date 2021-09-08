@@ -41,23 +41,24 @@
       .priceInfo {
         margin-bottom: 0.5em;
 
-        .price {
+        .discountedPrice {
           margin: 0 0.5em 2em 0;
           font-weight: 700;
         }
 
-        span {
+        .price {
           margin-right: 0.5em;
           color: #888;
           font-size: 0.8rem;
           text-decoration: line-through;
+        }
 
-          &:last-child {
-            color: #6b90dc;
-            font-size: 0.9rem;
-            font-weight: bold;
-            text-decoration: none;
-          }
+        .discountedPercent {
+          margin-right: 0.5em;
+          color: #6b90dc;
+          font-size: 0.9rem;
+          font-weight: bold;
+          text-decoration: none;
         }
       }
     }

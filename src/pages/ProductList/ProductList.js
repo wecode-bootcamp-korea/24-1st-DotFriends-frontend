@@ -36,6 +36,10 @@ class ProductList extends Component {
     if (this.props.match.params.category !== prevProps.match.params.category) {
       this.getData();
     }
+
+    if (this.props.location.search !== prevProps.location.search) {
+      this.getData();
+    }
   };
 
   getData = () => {
@@ -46,9 +50,8 @@ class ProductList extends Component {
     const offset = `&offset=${(this.state.page - 1) * this.state.view}`;
     const limit = `&limit=${this.state.view}`;
     const filter = `&order=${this.state.filter}`;
-    const search = this.props.location.search
-      ? `&search=${this.props.location.search}`
-      : '';
+    const searchValue = this.props.location.search.replace('?', '');
+    const search = searchValue ? `&search=${searchValue}` : '';
 
     fetch(`${PRODUCT_LIST_API + category + offset + limit + filter + search}`)
       .then(result => result.json())
@@ -94,7 +97,6 @@ class ProductList extends Component {
       totalProducts,
       category,
     } = this.state;
-
     return (
       <section className="productList">
         <div className="productListWrapper">
