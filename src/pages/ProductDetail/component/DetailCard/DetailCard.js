@@ -3,6 +3,7 @@ import './DetailCard.scss';
 
 class DetailCard extends Component {
   render() {
+    const { isClicked, handleOption, selectOption } = this.props;
     return (
       <div className="detailCard">
         <div className="productImg">
@@ -81,11 +82,22 @@ class DetailCard extends Component {
             </div>
           </div>
           <div className="options">
-            <div className="optionBtn">
+            <div className="optionBtn" onClick={handleOption}>
               <span>사이즈</span>
             </div>
-            <div className="option hidden">
+            <div
+              className={`option ${isClicked ? 'show' : ''}`}
+              onClick={selectOption}
+            >
               <span>단품</span>
+            </div>
+          </div>
+          <div className="selectedProduct">
+            <span>단품</span>
+            <div className="btnBox">
+              <button className="minus">-</button>
+              <span className="count">1</span>
+              <button className="plus">+</button>
             </div>
           </div>
           <div className="calculator">

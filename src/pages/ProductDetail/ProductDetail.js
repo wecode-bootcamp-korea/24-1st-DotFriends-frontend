@@ -1,16 +1,45 @@
 import React, { Component } from 'react';
 import DetailCard from './component/DetailCard/DetailCard';
+import Review from './component/Review/Review';
+import Star from './component/Star/Star';
 import './ProductDetail.scss';
 class ProductDetail extends Component {
+  state = {
+    selectedMenu: 'review',
+    selectedReviewMenu: 'all',
+    isClickedOption: false,
+    isSelected: false,
+  };
+
+  handleOption = () => {
+    this.setState({ isClickedOption: !this.state.isClickedOption });
+  };
+
+  selectOption = () => {
+    this.setState({ isClickedOption: false, isSelected: true });
+  };
+
   render() {
+    const { selectedMenu, selectedReviewMenu, isClickedOption } = this.state;
     return (
       <section className="productDetail">
         <div className="detailWrapper">
-          <DetailCard />
+          <DetailCard
+            isClicked={isClickedOption}
+            handleOption={this.handleOption}
+            selectOption={this.selectOption}
+          />
           <div className="menus">
-            <button className="menu active">상세정보</button>
-            <button className="menu">리뷰</button>
-            <button className="menu">Q&A</button>
+            {DETAIL_MENU.map((menu, idx) => (
+              <button
+                className={`menu ${
+                  selectedMenu === menu.class ? 'active' : ''
+                }`}
+                key={idx}
+              >
+                {menu.name}
+              </button>
+            ))}
           </div>
           <div className="productReviews">
             <div className="reviewTitle">
@@ -20,9 +49,9 @@ class ProductDetail extends Component {
             <div className="summary">
               <div className="star">
                 <p>사용자 총 평점</p>
-                <i className="fas fa-star" />
+                <Star grade={4.1} />
                 <div>
-                  <span>5</span>
+                  <span>4.1</span>
                   <span>/</span>
                   <span>5</span>
                 </div>
@@ -36,27 +65,19 @@ class ProductDetail extends Component {
             <div className="reviews">
               <h3>리뷰 11건</h3>
               <div className="reviewBtns">
-                <button className="reviewBtn active">전체보기</button>
-                <button className="reviewBtn">포토/동영상</button>
-                <button className="reviewBtn">스토어PICK</button>
-                <button className="reviewBtn">한달사용리뷰</button>
+                {REVIEW_MENU.map((menu, idx) => (
+                  <button
+                    className={`reviewBtn ${
+                      selectedReviewMenu === menu.class ? 'active' : ''
+                    }`}
+                    key={idx}
+                  >
+                    {menu.name}
+                  </button>
+                ))}
               </div>
               <ul className="reviewList">
-                <li>
-                  <div className="reviewInfo">
-                    <p className="grade">
-                      평점 <i className="fas fa-star" />
-                      <span>5</span>
-                    </p>
-                    <p className="user">유저 아이디</p>
-                    <p className="option">사이즈 : 단품</p>
-                    <p classname="comment">너무 귀엽고 사랑스러워요!</p>
-                  </div>
-                  <img
-                    src="https://shop-phinf.pstatic.net/20210802_296/1627871458931kq8aG_JPEG/19943140_64080822.jpg?type=m510"
-                    alt="리뷰사진"
-                  />
-                </li>
+                <Review />
               </ul>
             </div>
           </div>
@@ -66,3 +87,19 @@ class ProductDetail extends Component {
   }
 }
 export default ProductDetail;
+
+const DETAIL_MENU = [
+  {
+    name: '상세정보',
+    class: 'detail',
+  },
+  { name: '리뷰', class: 'review' },
+  { name: 'Q&A', class: 'Q&A' },
+];
+
+const REVIEW_MENU = [
+  { name: '전체보기', class: 'all' },
+  { name: '포토/동영상', class: 'media' },
+  { name: '스토어PICK', class: 'pick' },
+  { name: '한달사용리뷰', class: 'month' },
+];
