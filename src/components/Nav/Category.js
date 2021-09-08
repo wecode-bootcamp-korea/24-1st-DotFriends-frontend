@@ -8,9 +8,11 @@ class Category extends Component {
     return (
       <li className="category">
         <div
-          key={category.id}
+          id={category.id}
           className="categoryLink"
-          onClick={this.props.goToProductList}
+          onClick={e => {
+            this.props.goToProductList(e.currentTarget.id);
+          }}
         >
           {category.title}
           {subCategory && subCategory.length > 0 && (

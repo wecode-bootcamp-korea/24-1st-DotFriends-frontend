@@ -11,6 +11,8 @@ class Nav extends Component {
     isLogined: false,
   };
 
+  inputRef = React.createRef();
+
   componentDidMount = () => {
     localStorage.getItem('TOKEN') &&
       this.setState({ isLogined: !this.state.isLogined });
@@ -33,13 +35,22 @@ class Nav extends Component {
     this.setState({ searchValue: e.target.value });
   };
 
+  handleEnter = e => {
+    if (e.key === 'Enter') {
+      this.goToSearchResult();
+    }
+  };
+
   goToSearchResult = e => {
-    e.preventDefault();
-    this.props.history.push('/product-list');
+    this.props.history.push(`/product-list?${this.state.searchValue}`);
+    this.setState({ searchValue: '' });
+    this.inputRef.current.value = '';
   };
 
   goToProductList = e => {
-    this.props.history.push(`/product-list/${e}`);
+    e === 'new' || e === 'sale' || Number(e) < 4
+      ? this.props.history.push(`/product-list/${e}`)
+      : this.props.history.push(`/product-list/new`);
   };
 
   render() {
@@ -99,17 +110,19 @@ class Nav extends Component {
           <h1 className="mainLogo">
             <Link to="/">DOT FRIENDS</Link>
           </h1>
-          <form className="searchForm" onSubmit={this.goToSearchResult}>
+          <div className="searchForm">
             <input
               type="text"
               className="search"
               placeholder="검색어를 입력해보세요"
               onChange={this.handleChange}
+              onKeyPress={this.handleEnter}
+              ref={this.inputRef}
             />
-            <button className="searchBtn">
+            <button className="searchBtn" onClick={this.goToSearchResult}>
               <i className="fas fa-search" />
             </button>
-          </form>
+          </div>
         </div>
         <nav className="categoriesContainer">
           <div className="categoriesWrapper">
