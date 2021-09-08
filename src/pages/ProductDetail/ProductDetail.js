@@ -16,39 +16,74 @@ class ProductDetail extends Component {
   };
 
   componentDidMount = () => {
-    //   fetch('/data/ProductDetail.json')
-    //     .then(res => res.json())
-    //     .then(res => this.setState({ product: res.results }));
-    // };
-    fetch(`${BASE_URL}/product/${this.props.match.params.id}`)
-      .then(result => result.json())
-      .then(result =>
-        this.setState({
-          product: result.results,
-        })
-      );
+    fetch('/data/ProductDetail.json')
+      .then(res => res.json())
+      .then(res => this.setState({ product: res.results }));
   };
+  //   fetch(`${BASE_URL}/product/${this.props.match.params.id}`)
+  //     .then(result => result.json())
+  //     .then(result =>
+  //       this.setState({
+  //         product: result.results,
+  //       })
+  //     );
+  // };
 
   handleOption = () => {
     this.setState({ isClickedOption: !this.state.isClickedOption });
   };
 
   selectOption = () => {
-    this.setState({ isClickedOption: false, isSelected: true });
+    if (this.state.isSelected) {
+      alert('이미 선택한 옵션입니다.');
+      this.setState({ isClickedOption: false });
+      return;
+    }
+    this.setState({ isClickedOption: false, isSelected: true, count: 1 });
+  };
+
+  updateCount = (e, action) => {
+    switch (action) {
+      case 'add':
+        this.setState({ count: this.state.count + 1 });
+        break;
+      case 'substract':
+        const count = this.state.count - 1;
+        this.setState({ count: count > 1 ? count : 1 });
+        break;
+      default:
+        break;
+    }
+  };
+
+  handleDelete = () => {
+    this.setState({ isSelected: false, count: 0 });
   };
 
   render() {
-    const { selectedMenu, selectedReviewMenu, isClickedOption, product } =
-      this.state;
+    const {
+      selectedMenu,
+      selectedReviewMenu,
+      isClickedOption,
+      product,
+      count,
+      isSelected,
+    } = this.state;
+
+    const { handleOption, selectOption, updateCount, handleDelete } = this;
     console.log(this.state);
     return (
       <section className="productDetail">
         <div className="detailWrapper">
           <DetailCard
             isClicked={isClickedOption}
-            handleOption={this.handleOption}
-            selectOption={this.selectOption}
+            handleOption={handleOption}
+            selectOption={selectOption}
+            updateCount={updateCount}
+            handleDelete={handleDelete}
             product={product}
+            count={count}
+            isSelected={isSelected}
           />
           <div className="menus">
             {DETAIL_MENU.map((menu, idx) => (

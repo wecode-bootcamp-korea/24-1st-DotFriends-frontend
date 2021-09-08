@@ -3,7 +3,15 @@ import './DetailCard.scss';
 
 class DetailCard extends Component {
   render() {
-    const { isClicked, handleOption, selectOption, product } = this.props;
+    const {
+      isClicked,
+      handleOption,
+      selectOption,
+      handleDelete,
+      product,
+      count,
+      isSelected,
+    } = this.props;
     const { images, name, price, reviews } = product;
     return (
       <div className="detailCard">
@@ -67,27 +75,45 @@ class DetailCard extends Component {
               <span>단품</span>
             </div>
           </div>
-          <div className="selectedProduct">
-            <p className="option">단품</p>
-            <div className="btnAndPrice">
-              <div className="btnBox">
-                <button className="minus">-</button>
-                <span className="count">1</span>
-                <button className="plus">+</button>
+          {isSelected && (
+            <div className="selectedProduct">
+              <p className="option">단품</p>
+
+              <div className="btnAndPrice">
+                <div className="btnBox">
+                  <button
+                    className="minus"
+                    onClick={e => {
+                      this.props.updateCount(e, 'substract');
+                    }}
+                  >
+                    -
+                  </button>
+                  <span className="count">{count}</span>
+                  <button
+                    className="plus"
+                    onClick={e => {
+                      this.props.updateCount(e, 'add');
+                    }}
+                  >
+                    +
+                  </button>
+                </div>
+                <span className="totlaPrice">
+                  {price && (count * price).toLocaleString()}원
+                </span>
               </div>
-              <span className="totlaPrice">
-                {price && price.toLocaleString()}원
-              </span>
+              <button className="delete" onClick={handleDelete}>
+                <i className="fas fa-times" />
+              </button>
             </div>
-            <button className="delete">
-              <i className="fas fa-times" />
-            </button>
-          </div>
+          )}
+
           <div className="calculator">
             <strong>총 상품 금액</strong>
             <div className="results">
-              <span>총 수량 0개</span>
-              <span>0원</span>
+              <span>총 수량 {count}개</span>
+              <span>{(price * count).toLocaleString()}원</span>
             </div>
           </div>
           <div className="buttons">
