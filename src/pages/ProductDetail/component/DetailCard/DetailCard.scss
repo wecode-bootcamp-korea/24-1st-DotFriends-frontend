@@ -42,13 +42,25 @@
       margin-bottom: 12px;
     }
 
-    .price {
+    .priceContainer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
       width: 100%;
       margin-bottom: 14px;
-      color: #6b90cd;
-      font-size: 1.5rem;
-      font-weight: bold;
-      text-align: right;
+
+      .price {
+        margin-right: 12px;
+        color: #888;
+        text-decoration: line-through;
+      }
+
+      .discountedPrice {
+        color: #6b90cd;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: right;
+      }
     }
 
     .pointBox {

@@ -141,7 +141,11 @@ class ProductDetail extends Component {
               <ul className="reviewList">
                 {reviews &&
                   reviews.map((review, idx) => (
-                    <Review review={review} image={product.images[0]} />
+                    <Review
+                      key={idx}
+                      review={review}
+                      image={product.images[0]}
+                    />
                   ))}
               </ul>
             </div>

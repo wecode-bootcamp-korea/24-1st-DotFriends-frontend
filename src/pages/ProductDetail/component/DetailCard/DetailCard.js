@@ -12,7 +12,15 @@ class DetailCard extends Component {
       count,
       isSelected,
     } = this.props;
-    const { images, name, price, reviews } = product;
+    const {
+      images,
+      name,
+      price,
+      reviews,
+      discounted_price,
+      discount_percent,
+      comment_avg_rate,
+    } = product;
     return (
       <div className="detailCard">
         <div className="productImg">
@@ -28,7 +36,16 @@ class DetailCard extends Component {
         </div>
         <div className="productInfo">
           <h1 className="name">{name}</h1>
-          <p className="price">{price && price.toLocaleString()}원</p>
+          <div className="priceContainer">
+            {!!discount_percent && (
+              <span className="price">{price && price.toLocaleString()}원</span>
+            )}
+
+            <span className="discountedPrice">
+              {discounted_price && discounted_price.toLocaleString()}원
+            </span>
+          </div>
+
           <div className="pointBox">
             <div className="pointIntro">
               <strong>라인 프렌즈 고객을 위한 혜택</strong>
@@ -126,7 +143,7 @@ class DetailCard extends Component {
           <span>리뷰슈</span>
           <strong>{reviews && reviews.length}</strong>
           <span>사용자 평점</span>
-          <strong>5.0</strong>
+          <strong>{comment_avg_rate}</strong>
           <span>/</span>
           <strong>5</strong>
         </div>
