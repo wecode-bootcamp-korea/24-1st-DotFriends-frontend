@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import GoodsList from './GoodsList/GoodsList';
+import Nav from '../../components/Nav/Nav';
+import Footer from '../../components/Footer/Footer';
+import { PRODUCT_LIST_API } from '../../config';
 import './Main.scss';
 
 const imgArr = [
@@ -56,8 +59,7 @@ class Main extends Component {
   }
 
   findFetch(value) {
-    const ipAddress = '10.58.0.135';
-    fetch(`http://${ipAddress}:8000/product?option=${value}&limit=12&order=?`)
+    fetch(`${PRODUCT_LIST_API}option=${value}&limit=12&order=?`)
       .then(response => response.json())
       .then(response => this.setState({ [value + 'List']: response.results }));
   }
@@ -101,10 +103,10 @@ class Main extends Component {
   };
 
   render() {
-    console.log(this.state.isOn);
     const { currentSlide, saleList, newList } = this.state;
     return (
       <div className="main">
+        <Nav />
         <div className="textArea">
           <h1>{textAreaObj[currentSlide].textTitle}</h1>
           <h1>{textAreaObj[currentSlide].textComment}</h1>
@@ -164,6 +166,7 @@ class Main extends Component {
             </button>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

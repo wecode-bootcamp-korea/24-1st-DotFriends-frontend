@@ -25,6 +25,10 @@
 }
 
 .main {
+  .nav {
+    position: absolute;
+    z-index: 100000;
+  }
   .textArea {
     position: absolute;
     width: 650px;
