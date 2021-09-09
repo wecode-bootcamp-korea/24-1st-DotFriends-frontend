@@ -45,7 +45,7 @@ class SignUp extends Component {
   };
 
   render() {
-    const { id, pw, rePw } = this.state;
+    const { id, pw, rePw, name, address, phone } = this.state;
     const idCheck = id !== '' && !id.includes('@');
     const pwCheck = pw !== '' && pw.length < 7;
     const rePwCheck = rePw.length > 0 && pw !== rePw;
@@ -90,12 +90,12 @@ class SignUp extends Component {
     ];
 
     const check =
-      this.state.id.includes('@') &&
-      this.state.pw.length > 7 &&
-      this.state.rePw === this.state.pw &&
-      this.state.name !== '' &&
-      this.state.address !== '' &&
-      this.state.phone !== '';
+      id.includes('@') &&
+      pw.length > 7 &&
+      rePw === pw &&
+      name !== '' &&
+      address !== '' &&
+      phone !== '';
 
     return (
       <div className="signUp">
