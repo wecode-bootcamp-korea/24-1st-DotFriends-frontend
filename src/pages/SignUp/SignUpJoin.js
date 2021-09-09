@@ -2,21 +2,20 @@ import React, { Component } from 'react';
 
 class SignUpJoin extends Component {
   render() {
-    const { name, type, handleChange } = this.props;
+    const { input, handleChange } = this.props;
+    const { title, name, type, validation, idAlert } = input;
     return (
       <div className="joinRow infoRow">
-        <h3 className="joinTitle">{name}</h3>
+        <h3 className="joinTitle">{title}</h3>
         <span className="joinBox">
           <input
             className="typingArea"
+            name={name}
             type={type}
-            pattern={this.props.pattern}
-            onChange={e => {
-              handleChange(e.target.value);
-            }}
-            loginkey={this.props.loginkey}
+            onChange={handleChange}
           />
         </span>
+        {validation && <span className="errorNextBox">{idAlert}</span>}
       </div>
     );
   }

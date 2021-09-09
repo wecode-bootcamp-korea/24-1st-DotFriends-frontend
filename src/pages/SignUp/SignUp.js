@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import './SignUp.scss';
 import SignUpJoin from './SignUpJoin';
-import SingUpIdPw from './SingUpIdPw';
+import './SignUp.scss';
 
 class SignUp extends Component {
   constructor(props) {
@@ -13,30 +12,13 @@ class SignUp extends Component {
       name: '',
       address: '',
       phone: '',
-      btn: false,
     };
   }
 
-  handleIdPWInputs = e => {
+  handleInputs = e => {
     const { name, value } = e.target;
     this.setState({
       [name]: value,
-    });
-  };
-
-  onchangeName = name => {
-    this.setState({
-      name,
-    });
-  };
-  onchangeAddress = address => {
-    this.setState({
-      address,
-    });
-  };
-  onchangePhone = phone => {
-    this.setState({
-      phone,
     });
   };
 
@@ -63,55 +45,47 @@ class SignUp extends Component {
   };
 
   render() {
-    const idCheck = this.state.id !== '' && !this.state.id.includes('@');
-    const pwCheck = this.state.pw !== '' && this.state.pw.length < 7;
-    const rePwCheck = this.state.pw !== this.state.rePw;
-
-    const IDPW = [
-      {
-        name: 'id',
-        title: '아이디',
-        type: 'text',
-        idAlert: '이메일 양식으로 입력해주세요.',
-        idPwCheck: idCheck,
-        onchange: this.handleIdPWInputs,
-      },
-      {
-        name: 'pw',
-        title: '비밀번호',
-        type: 'password',
-        idAlert: '8자 이상 영문 대 소문자, 숫자, 특수문자를 사용하세요.',
-        idPwCheck: pwCheck,
-        onchange: this.handleIdPWInputs,
-      },
-      {
-        name: 'rePw',
-        title: '비밀번호 재확인',
-        type: 'password',
-        idAlert: '비밀번호가 일치하지 않습니다.',
-        idPwCheck: rePwCheck,
-        onchange: this.handleIdPWInputs,
-      },
-    ];
+    const { id, pw, rePw } = this.state;
+    const idCheck = id !== '' && !id.includes('@');
+    const pwCheck = pw !== '' && pw.length < 7;
+    const rePwCheck = rePw.length > 0 && pw !== rePw;
 
     const INFO = [
       {
-        name: '이름',
+        title: '아이디',
+        name: 'id',
         type: 'text',
-        pattern: '',
-        handleChange: this.onchangeName,
+        validation: idCheck,
+        idAlert: '이메일 양식으로 입력해주세요.',
       },
       {
-        name: '주소',
-        type: 'text',
-        pattern: '',
-        handleChange: this.onchangeAddress,
+        title: '비밀번호',
+        name: 'pw',
+        type: 'password',
+        validation: pwCheck,
+        idAlert: '8자 이상 영문 대 소문자, 숫자, 특수문자를 사용하세요.',
       },
       {
-        name: '휴대전화',
+        title: '비밀번호 재확인',
+        name: 'rePw',
+        type: 'password',
+        validation: rePwCheck,
+        idAlert: '비밀번호가 일치하지 않습니다.',
+      },
+      {
+        title: '이름',
+        name: 'name',
+        type: 'text',
+      },
+      {
+        title: '주소',
+        name: 'address',
+        type: 'text',
+      },
+      {
+        title: '휴대전화',
+        name: 'phone',
         type: 'tel',
-        pattern: '[0-9]{3}-[0-9]{4}-[0-9]{4}',
-        handleChange: this.onchangePhone,
       },
     ];
 
@@ -121,9 +95,7 @@ class SignUp extends Component {
       this.state.rePw === this.state.pw &&
       this.state.name !== '' &&
       this.state.address !== '' &&
-      this.state.phone !== ''
-        ? true
-        : false;
+      this.state.phone !== '';
 
     return (
       <div className="signUp">
@@ -136,34 +108,13 @@ class SignUp extends Component {
           </div>
           {/* container */}
           <div className="container">
-            {/* 아이디,비번,비번재확인 */}
-            <div className="rowGroup">
-              {IDPW.map((row, idx) => {
-                return (
-                  <SingUpIdPw
-                    key={idx}
-                    name={row.name}
-                    title={row.title}
-                    type={row.type}
-                    onchange={row.onchange}
-                    loginkey={this.loginkey}
-                    idPwCheck={row.idPwCheck}
-                    idAlert={row.idAlert}
-                  />
-                );
-              })}
-            </div>
-
-            {/* 이름,주소,폰번호 */}
+            {/* 아이디,비번,비번재확인, 이름,주소,폰번호 */}
             <div className="rowGroup userInfo">
               {INFO.map((input, idx) => (
                 <SignUpJoin
                   key={idx}
-                  name={input.name}
-                  type={input.type}
-                  pattern={input.pattern}
-                  loginkey={this.loginkey}
-                  handleChange={input.handleChange}
+                  input={input}
+                  handleChange={this.handleInputs}
                 />
               ))}
             </div>
