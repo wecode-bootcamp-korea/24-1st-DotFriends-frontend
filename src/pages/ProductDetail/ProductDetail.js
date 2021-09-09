@@ -16,10 +16,6 @@ class ProductDetail extends Component {
   };
 
   componentDidMount = () => {
-    // fetch('/data/ProductDetail.json')
-    //   .then(res => res.json())
-    //   .then(res => this.setState({ product: res.results }));
-    // };
     fetch(`${PRODUCT_API}/${this.props.match.params.id}`)
       .then(result => result.json())
       .then(result =>
@@ -71,7 +67,7 @@ class ProductDetail extends Component {
     } = this.state;
 
     const { handleOption, selectOption, updateCount, handleDelete } = this;
-    const { comment_avg_rate, comment_count, reviews } = product;
+    const { comment_avg_rate, comment_count, reviews } = product || [];
     return (
       <section className="productDetail">
         <div className="detailWrapper">

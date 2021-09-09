@@ -4,7 +4,9 @@ import SideCategory from './component/SideCategory/SideCategory';
 import ViewController from './component/ViewController/ViewController';
 import Product from './component/Product/Product';
 import Pagination from './component/Pagination/Pagination';
+import DetailCard from '../ProductDetail/component/DetailCard/DetailCard';
 import { PRODUCT_LIST_API } from '../../config';
+import { PRODUCT_API } from '../../config';
 import './ProductList.scss';
 
 class ProductList extends Component {
@@ -17,6 +19,8 @@ class ProductList extends Component {
     page: 1,
     totalProducts: 0,
     category: '',
+    isActiveModal: false,
+    product: {},
   };
 
   componentDidMount = () => {
@@ -87,6 +91,21 @@ class ProductList extends Component {
     this.setState({ list: newList });
   };
 
+  handleModal = id => {
+    fetch(`${PRODUCT_API}/${id}`)
+      .then(result => result.json())
+      .then(result =>
+        this.setState({
+          product: result.results,
+          isActiveModal: true,
+        })
+      );
+  };
+
+  closeModal = () => {
+    this.setState({ isActiveModal: false });
+  };
+
   render() {
     const {
       list,
@@ -96,7 +115,9 @@ class ProductList extends Component {
       filter,
       totalProducts,
       category,
+      product,
     } = this.state;
+
     return (
       <section className="productList">
         <div className="productListWrapper">
@@ -123,6 +144,7 @@ class ProductList extends Component {
                   product={product}
                   viewType={viewType}
                   handleLike={this.handleLike}
+                  handleModal={this.handleModal}
                 />
               ))
             ) : (
@@ -135,6 +157,16 @@ class ProductList extends Component {
             currentPage={this.state.page}
           />
         </div>
+        {this.state.isActiveModal && (
+          <div className="modal">
+            <div className="modalContainer">
+              <button className="closeBtn" onClick={this.closeModal}>
+                <i className="fas fa-times" />
+              </button>
+              <DetailCard product={product} count={0} />
+            </div>
+          </div>
+        )}
       </section>
     );
   }

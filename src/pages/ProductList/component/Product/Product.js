@@ -25,6 +25,10 @@ class Product extends Component {
       });
   };
 
+  handleModal = e => {
+    this.props.handleModal(e.currentTarget.name);
+  };
+
   render() {
     const {
       name,
@@ -73,7 +77,7 @@ class Product extends Component {
             >
               <i className="far fa-heart" />
             </button>
-            <button className="more">
+            <button className="more" onClick={this.handleModal} name={id}>
               <i className="fas fa-plus" />
             </button>
           </div>

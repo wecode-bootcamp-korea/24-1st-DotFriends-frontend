@@ -20,7 +20,7 @@ class DetailCard extends Component {
       discounted_price,
       discount_percent,
       comment_avg_rate,
-    } = product;
+    } = product || '';
     return (
       <div className="detailCard">
         <div className="productImg">
