@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DetailCard from './component/DetailCard/DetailCard';
 import Review from './component/Review/Review';
 import Star from './component/Star/Star';
-import { BASE_URL } from '../../config';
+import { PRODUCT_API } from '../../config';
 import './ProductDetail.scss';
 
 class ProductDetail extends Component {
@@ -16,18 +16,18 @@ class ProductDetail extends Component {
   };
 
   componentDidMount = () => {
-    fetch('/data/ProductDetail.json')
-      .then(res => res.json())
-      .then(res => this.setState({ product: res.results }));
+    // fetch('/data/ProductDetail.json')
+    //   .then(res => res.json())
+    //   .then(res => this.setState({ product: res.results }));
+    // };
+    fetch(`${PRODUCT_API}/${this.props.match.params.id}`)
+      .then(result => result.json())
+      .then(result =>
+        this.setState({
+          product: result.results,
+        })
+      );
   };
-  //   fetch(`${BASE_URL}/product/${this.props.match.params.id}`)
-  //     .then(result => result.json())
-  //     .then(result =>
-  //       this.setState({
-  //         product: result.results,
-  //       })
-  //     );
-  // };
 
   handleOption = () => {
     this.setState({ isClickedOption: !this.state.isClickedOption });
@@ -71,6 +71,8 @@ class ProductDetail extends Component {
     } = this.state;
 
     const { handleOption, selectOption, updateCount, handleDelete } = this;
+    const { comment_avg_rate, comment_count, reviews } = product;
+    console.log(reviews);
     console.log(this.state);
     return (
       <section className="productDetail">
@@ -105,9 +107,13 @@ class ProductDetail extends Component {
             <div className="summary">
               <div className="star">
                 <p>사용자 총 평점</p>
-                <Star grade={4.1} />
+                <Star
+                  grade={
+                    Number(comment_avg_rate) ? Number(comment_avg_rate) : 0
+                  }
+                />
                 <div>
-                  <span>4.1</span>
+                  <span>{comment_avg_rate}</span>
                   <span>/</span>
                   <span>5</span>
                 </div>
@@ -115,11 +121,11 @@ class ProductDetail extends Component {
               <div className="count">
                 <p>전체 리뷰수</p>
                 <i className="fas fa-comment" />
-                <span>11</span>
+                <span>{comment_count}</span>
               </div>
             </div>
             <div className="reviews">
-              <h3>리뷰 11건</h3>
+              <h3>리뷰 {comment_count}건</h3>
               <div className="reviewBtns">
                 {REVIEW_MENU.map((menu, idx) => (
                   <button
@@ -133,7 +139,10 @@ class ProductDetail extends Component {
                 ))}
               </div>
               <ul className="reviewList">
-                <Review />
+                {reviews &&
+                  reviews.map((review, idx) => (
+                    <Review review={review} image={product.images[0]} />
+                  ))}
               </ul>
             </div>
           </div>
