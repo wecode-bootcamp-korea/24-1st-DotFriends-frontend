@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import Tags from '../Tags/Tags';
-import { BASE_URL } from '../../../../config';
+import { PRODUCT_API } from '../../../../config';
 import './Product.scss';
+import { Link } from 'react-router-dom';
 
 class Product extends Component {
   handleLike = e => {
-    fetch(`${BASE_URL}/userproductlikes`, {
+    fetch(`${PRODUCT_API}/likes`, {
       method: 'POST',
-      headers: { authorization: localStorage.getItem('TOKEN') },
+      headers: { authorization: localStorage.getItem('dot-token') },
       body: JSON.stringify({
         isLiked: this.props.product.isLiked,
         productId: e.currentTarget.name,
@@ -48,7 +49,9 @@ class Product extends Component {
       <li className={`productItem ${viewType}`}>
         <div to="/" className="link">
           <Tags isNew={is_New} />
-          <img className="img" src={image !== [] && image[0]} alt="미니언" />
+          <Link to={`/product/${id}`}>
+            <img className="img" src={image !== [] && image[0]} alt="미니언" />
+          </Link>
           <div className="detail">
             <h3 className="name">{name}</h3>
             <div className="priceInfo">

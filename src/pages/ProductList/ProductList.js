@@ -5,6 +5,8 @@ import ViewController from './component/ViewController/ViewController';
 import Product from './component/Product/Product';
 import Pagination from './component/Pagination/Pagination';
 import DetailCard from '../ProductDetail/component/DetailCard/DetailCard';
+import Nav from '../../components/Nav/Nav';
+import Footer from '../../components/Footer/Footer';
 import { PRODUCT_LIST_API } from '../../config';
 import { PRODUCT_API } from '../../config';
 import './ProductList.scss';
@@ -119,55 +121,59 @@ class ProductList extends Component {
     } = this.state;
 
     return (
-      <section className="productList">
-        <div className="productListWrapper">
-          <header className="header">
-            <h1>{category}</h1>
-            <SideCategory totalProducts={totalProducts} category={category} />
-          </header>
-          <div className="menus">
-            <Filters filter={filter} getPageOption={this.getPageOption} />
-            <ViewController
-              view={view}
-              isClickedView={isClickedView}
-              viewType={viewType}
-              handleViewCount={this.handleViewCount}
-              getViewCount={this.getViewCount}
+      <>
+        <Nav />
+        <section className="productList">
+          <div className="productListWrapper">
+            <header className="header">
+              <h1>{category}</h1>
+              <SideCategory totalProducts={totalProducts} category={category} />
+            </header>
+            <div className="menus">
+              <Filters filter={filter} getPageOption={this.getPageOption} />
+              <ViewController
+                view={view}
+                isClickedView={isClickedView}
+                viewType={viewType}
+                handleViewCount={this.handleViewCount}
+                getViewCount={this.getViewCount}
+                getPageOption={this.getPageOption}
+              />
+            </div>
+            <ul className="list">
+              {list && list.length !== 0 ? (
+                list.map(product => (
+                  <Product
+                    key={product.id}
+                    product={product}
+                    viewType={viewType}
+                    handleLike={this.handleLike}
+                    handleModal={this.handleModal}
+                  />
+                ))
+              ) : (
+                <strong className="none">검색결과가 없습니다.</strong>
+              )}
+            </ul>
+            <Pagination
+              pageCount={Math.ceil(totalProducts / view)}
               getPageOption={this.getPageOption}
+              currentPage={this.state.page}
             />
           </div>
-          <ul className="list">
-            {list && list.length !== 0 ? (
-              list.map(product => (
-                <Product
-                  key={product.id}
-                  product={product}
-                  viewType={viewType}
-                  handleLike={this.handleLike}
-                  handleModal={this.handleModal}
-                />
-              ))
-            ) : (
-              <strong className="none">검색결과가 없습니다.</strong>
-            )}
-          </ul>
-          <Pagination
-            pageCount={Math.ceil(totalProducts / view)}
-            getPageOption={this.getPageOption}
-            currentPage={this.state.page}
-          />
-        </div>
-        {this.state.isActiveModal && (
-          <div className="modal">
-            <div className="modalContainer">
-              <button className="closeBtn" onClick={this.closeModal}>
-                <i className="fas fa-times" />
-              </button>
-              <DetailCard product={product} count={0} />
+          {this.state.isActiveModal && (
+            <div className="modal">
+              <div className="modalContainer">
+                <button className="closeBtn" onClick={this.closeModal}>
+                  <i className="fas fa-times" />
+                </button>
+                <DetailCard product={product} count={0} />
+              </div>
             </div>
-          </div>
-        )}
-      </section>
+          )}
+        </section>
+        <Footer />
+      </>
     );
   }
 }

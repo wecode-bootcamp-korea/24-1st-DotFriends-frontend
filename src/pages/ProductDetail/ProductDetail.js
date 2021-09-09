@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import DetailCard from './component/DetailCard/DetailCard';
 import Review from './component/Review/Review';
 import Star from './component/Star/Star';
+import Nav from '../../components/Nav/Nav';
+import Footer from '../../components/Footer/Footer';
 import { PRODUCT_API } from '../../config';
 import './ProductDetail.scss';
 
@@ -69,83 +71,87 @@ class ProductDetail extends Component {
     const { handleOption, selectOption, updateCount, handleDelete } = this;
     const { comment_avg_rate, comment_count, reviews } = product || [];
     return (
-      <section className="productDetail">
-        <div className="detailWrapper">
-          <DetailCard
-            isClicked={isClickedOption}
-            handleOption={handleOption}
-            selectOption={selectOption}
-            updateCount={updateCount}
-            handleDelete={handleDelete}
-            product={product}
-            count={count}
-            isSelected={isSelected}
-          />
-          <div className="menus">
-            {DETAIL_MENU.map((menu, idx) => (
-              <button
-                className={`menu ${
-                  selectedMenu === menu.class ? 'active' : ''
-                }`}
-                key={idx}
-              >
-                {menu.name}
-              </button>
-            ))}
-          </div>
-          <div className="productReviews">
-            <div className="reviewTitle">
-              <h2>상품리뷰</h2>
-              <p>상품을 구매하신 분들이 작성하신 리뷰입니다. </p>
+      <>
+        <Nav />
+        <section className="productDetail">
+          <div className="detailWrapper">
+            <DetailCard
+              isClicked={isClickedOption}
+              handleOption={handleOption}
+              selectOption={selectOption}
+              updateCount={updateCount}
+              handleDelete={handleDelete}
+              product={product}
+              count={count}
+              isSelected={isSelected}
+            />
+            <div className="menus">
+              {DETAIL_MENU.map((menu, idx) => (
+                <button
+                  className={`menu ${
+                    selectedMenu === menu.class ? 'active' : ''
+                  }`}
+                  key={idx}
+                >
+                  {menu.name}
+                </button>
+              ))}
             </div>
-            <div className="summary">
-              <div className="star">
-                <p>사용자 총 평점</p>
-                <Star
-                  grade={
-                    Number(comment_avg_rate) ? Number(comment_avg_rate) : 0
-                  }
-                />
-                <div>
-                  <span>{comment_avg_rate}</span>
-                  <span>/</span>
-                  <span>5</span>
+            <div className="productReviews">
+              <div className="reviewTitle">
+                <h2>상품리뷰</h2>
+                <p>상품을 구매하신 분들이 작성하신 리뷰입니다. </p>
+              </div>
+              <div className="summary">
+                <div className="star">
+                  <p>사용자 총 평점</p>
+                  <Star
+                    grade={
+                      Number(comment_avg_rate) ? Number(comment_avg_rate) : 0
+                    }
+                  />
+                  <div>
+                    <span>{comment_avg_rate}</span>
+                    <span>/</span>
+                    <span>5</span>
+                  </div>
+                </div>
+                <div className="count">
+                  <p>전체 리뷰수</p>
+                  <i className="fas fa-comment" />
+                  <span>{comment_count}</span>
                 </div>
               </div>
-              <div className="count">
-                <p>전체 리뷰수</p>
-                <i className="fas fa-comment" />
-                <span>{comment_count}</span>
-              </div>
-            </div>
-            <div className="reviews">
-              <h3>리뷰 {comment_count}건</h3>
-              <div className="reviewBtns">
-                {REVIEW_MENU.map((menu, idx) => (
-                  <button
-                    className={`reviewBtn ${
-                      selectedReviewMenu === menu.class ? 'active' : ''
-                    }`}
-                    key={idx}
-                  >
-                    {menu.name}
-                  </button>
-                ))}
-              </div>
-              <ul className="reviewList">
-                {reviews &&
-                  reviews.map((review, idx) => (
-                    <Review
+              <div className="reviews">
+                <h3>리뷰 {comment_count}건</h3>
+                <div className="reviewBtns">
+                  {REVIEW_MENU.map((menu, idx) => (
+                    <button
+                      className={`reviewBtn ${
+                        selectedReviewMenu === menu.class ? 'active' : ''
+                      }`}
                       key={idx}
-                      review={review}
-                      image={product.images[0]}
-                    />
+                    >
+                      {menu.name}
+                    </button>
                   ))}
-              </ul>
+                </div>
+                <ul className="reviewList">
+                  {reviews &&
+                    reviews.map((review, idx) => (
+                      <Review
+                        key={idx}
+                        review={review}
+                        image={product.images[0]}
+                      />
+                    ))}
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+        <Footer />
+      </>
     );
   }
 }

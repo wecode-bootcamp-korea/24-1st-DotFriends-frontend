@@ -117,7 +117,9 @@ class DetailCard extends Component {
                   </button>
                 </div>
                 <span className="totlaPrice">
-                  {price && (count * price).toLocaleString()}원
+                  {discounted_price &&
+                    (count * discounted_price).toLocaleString()}
+                  원
                 </span>
               </div>
               <button className="delete" onClick={handleDelete}>
@@ -130,7 +132,7 @@ class DetailCard extends Component {
             <strong>총 상품 금액</strong>
             <div className="results">
               <span>총 수량 {count}개</span>
-              <span>{(price * count).toLocaleString()}원</span>
+              <span>{(discounted_price * count).toLocaleString()}원</span>
             </div>
           </div>
           <div className="buttons">

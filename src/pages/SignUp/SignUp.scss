@@ -60,6 +60,7 @@
       .rowGroup {
         overflow: hidden;
         width: 460px;
+        margin: 0 auto;
         // height: 350px;
 
         .joinRow,
@@ -90,7 +91,7 @@
       .btnArea {
         width: 460px;
         height: 54px;
-        margin: 30px 0 9px;
+        margin: 30px auto 9px;
 
         .btnSignUp {
           width: 100%;
@@ -117,13 +118,15 @@
     }
 
     .footer {
-      display: block;
+      display: flex;
       justify-content: center;
       height: 80px;
       padding: 30px 0 15px;
+      margin: 0 auto;
 
       .footerLinks {
         display: flex;
+        margin: 0 auto;
         font-size: 14px;
         color: rgb(136, 136, 136);
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SignUpJoin from './SignUpJoin';
+import { SIGNUP_API } from '../../config';
 import './SignUp.scss';
 
 class SignUp extends Component {
@@ -23,7 +24,7 @@ class SignUp extends Component {
   };
 
   handleSignUp = () => {
-    fetch('http://10.58.7.62:8000/user/signup', {
+    fetch(`${SIGNUP_API}`, {
       method: 'POST',
       body: JSON.stringify({
         email: this.state.id,
@@ -38,6 +39,7 @@ class SignUp extends Component {
       .then(result => {
         if (result.MESSAGE === 'CREATE') {
           alert(`${this.state.id}님, 가입을 환영합니다.`);
+          this.props.history.push('/login');
         } else {
           alert('조건에 맞게 기입해주세요.');
         }
