@@ -9,8 +9,9 @@ class IdPwInput extends Component {
         </span>
         <input
           className="inputIdPw"
+          name={this.props.name}
           type={this.props.type}
-          placeholder={this.props.name}
+          placeholder={this.props.title}
           onChange={this.props.onchanging}
           loginkey={this.props.loginkey}
         />

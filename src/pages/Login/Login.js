@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import IdPwInput from './IdPwInput';
-// import { link } from 'react-router-dom';
 import './Login.scss';
 
 class Login extends Component {
@@ -13,26 +12,11 @@ class Login extends Component {
     };
   }
 
-  onchangeId = e => {
+  handleInputs = e => {
+    const { name, value } = e.target;
     this.setState({
-      id: e.target.value,
+      [name]: value,
     });
-  };
-  onchangePw = e => {
-    this.setState({
-      pw: e.target.value,
-    });
-  };
-  loginkey = () => {
-    if (this.state.id.includes('@') && this.state.pw.length > 7) {
-      this.setState({
-        btn: true,
-      });
-    } else {
-      this.setState({
-        btn: false,
-      });
-    }
   };
 
   handleLogin = () => {
@@ -48,12 +32,10 @@ class Login extends Component {
       .then(result => {
         if (result.MESSAGE === 'SUCCESS') {
           alert(`Welcome ${this.state.id}`);
-          console.log(result);
           localStorage.setItem('dot-token', result.token);
           this.props.history.push('/');
         } else {
           alert('Login failed');
-          console.log(result);
         }
       });
   };
@@ -61,15 +43,22 @@ class Login extends Component {
   render() {
     const IDPW = [
       {
-        name: '아이디',
+        name: 'id',
+        title: '아이디',
         type: 'text',
-        onchanging: this.onchangeId,
+        onchanging: this.handleInputs,
       },
-      { name: '비밀번호', type: 'password', onchanging: this.onchangePw },
+      {
+        name: 'pw',
+        title: '비밀번호',
+        type: 'password',
+        onchanging: this.handleInputs,
+      },
     ];
 
     const checkIdPw =
       this.state.id.includes('@') && this.state.pw.length > 7 ? true : false;
+    console.log(this.state);
     return (
       <div className="wrapLogin">
         <header className="header">
@@ -89,6 +78,7 @@ class Login extends Component {
                   <IdPwInput
                     key={idx}
                     name={input.name}
+                    title={input.title}
                     type={input.type}
                     onchanging={input.onchanging}
                     loginkey={this.loginkey}
