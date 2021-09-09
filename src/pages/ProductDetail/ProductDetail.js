@@ -72,8 +72,6 @@ class ProductDetail extends Component {
 
     const { handleOption, selectOption, updateCount, handleDelete } = this;
     const { comment_avg_rate, comment_count, reviews } = product;
-    console.log(reviews);
-    console.log(this.state);
     return (
       <section className="productDetail">
         <div className="detailWrapper">
