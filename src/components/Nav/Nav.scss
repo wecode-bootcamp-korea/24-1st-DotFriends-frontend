@@ -115,11 +115,12 @@
     .searchForm {
       position: absolute;
       right: 0;
-
+      opacity: 0.8;
       .search {
         padding: 0.8em 2em;
         border: 1px solid rgba(0, 0, 0, 0.2);
         border-radius: 20px;
+        background-color: rgba(250, 250, 250, 0.5);
       }
       .searchBtn {
         position: absolute;
