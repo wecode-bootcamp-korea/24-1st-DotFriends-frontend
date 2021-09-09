@@ -118,7 +118,6 @@ class ProductList extends Component {
       product,
     } = this.state;
 
-    console.log(this.state.isActiveModal);
     return (
       <section className="productList">
         <div className="productListWrapper">
@@ -162,7 +161,7 @@ class ProductList extends Component {
           <div className="modal">
             <div className="modalContainer">
               <button className="closeBtn" onClick={this.closeModal}>
-                <i class="fas fa-times" />
+                <i className="fas fa-times" />
               </button>
               <DetailCard product={product} count={0} />
             </div>
