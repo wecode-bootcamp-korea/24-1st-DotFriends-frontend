@@ -10,6 +10,7 @@ class SignUpJoin extends Component {
           <input
             className="typingArea"
             type={type}
+            pattern={this.props.pattern}
             onChange={e => {
               handleChange(e.target.value);
             }}
