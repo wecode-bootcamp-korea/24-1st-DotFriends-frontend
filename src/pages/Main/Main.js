@@ -57,7 +57,7 @@ class Main extends Component {
 
   findFetch(value) {
     const ipAddress = '10.58.0.135';
-    fetch(`http://${ipAddress}:8000/products?option=${value}&limit=12&order=?`)
+    fetch(`http://${ipAddress}:8000/product?option=${value}&limit=12&order=?`)
       .then(response => response.json())
       .then(response => this.setState({ [value + 'List']: response.results }));
   }

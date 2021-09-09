@@ -1,0 +1,15 @@
+{
+  "results": {
+    "id": 61,
+    "name": "주세요 달콤한 아이스크림",
+    "price": 29000,
+    "like": 0,
+    "images": [
+      "https://images.unsplash.com/photo-1611414724335-5ab2bd52d55e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1020&q=80",
+      "https://images.unsplash.com/photo-1611414724335-5ab2bd52d55e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1020&q=80",
+      "https://images.unsplash.com/photo-1611414724335-5ab2bd52d55e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1020&q=80",
+      "https://images.unsplash.com/photo-1611414724335-5ab2bd52d55e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1020&q=80"
+    ],
+    "reviews": []
+  }
+}
