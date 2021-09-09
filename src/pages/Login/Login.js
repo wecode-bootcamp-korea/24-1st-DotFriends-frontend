@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import IdPwInput from './IdPwInput';
 // import { link } from 'react-router-dom';
 import './Login.scss';
 
@@ -8,9 +9,10 @@ class Login extends Component {
     this.state = {
       id: '',
       pw: '',
-      btn: 'btnLogin',
+      btn: false,
     };
   }
+
   onchangeId = e => {
     this.setState({
       id: e.target.value,
@@ -24,16 +26,17 @@ class Login extends Component {
   loginkey = () => {
     if (this.state.id.includes('@') && this.state.pw.length > 7) {
       this.setState({
-        btn: 'btnLoginActive',
+        btn: true,
       });
     } else {
       this.setState({
-        btn: 'btnLogin',
+        btn: false,
       });
     }
   };
 
   handleLogin = () => {
+    console.log('click');
     fetch('http://10.58.4.133:8000/user/signin', {
       method: 'POST',
       body: JSON.stringify({
@@ -56,6 +59,17 @@ class Login extends Component {
   };
 
   render() {
+    const IDPW = [
+      {
+        name: '아이디',
+        type: 'text',
+        onchanging: this.onchangeId,
+      },
+      { name: '비밀번호', type: 'password', onchanging: this.onchangePw },
+    ];
+
+    const checkIdPw =
+      this.state.id.includes('@') && this.state.pw.length > 7 ? true : false;
     return (
       <div className="wrapLogin">
         <header className="header">
@@ -70,35 +84,24 @@ class Login extends Component {
         <div className="content">
           <div className="loginWrap">
             <div className="idPwWrap">
-              <div className="idPwCell">
-                <span className="iconSize">
-                  <i className="far fa-user faIcon"></i>
-                </span>
-                <input
-                  className="inputIdPw"
-                  type="text"
-                  placeholder="아이디"
-                  value={this.state.id}
-                  onChange={this.onchangeId}
-                  loginkey={this.loginkey}
-                />
-              </div>
-              <div className="idPwCell">
-                <span className="iconSize">
-                  <i className="fas fa-unlock-alt faIcon"></i>
-                </span>
-                <input
-                  className="inputIdPw"
-                  type="password"
-                  placeholder="비밀번호"
-                  value={this.state.pw}
-                  onChange={this.onchangePw}
-                  loginkey={this.loginkey}
-                />
-              </div>
+              {IDPW.map((input, idx) => {
+                return (
+                  <IdPwInput
+                    key={idx}
+                    name={input.name}
+                    type={input.type}
+                    onchanging={input.onchanging}
+                    loginkey={this.loginkey}
+                  />
+                );
+              })}
             </div>
             <div className="btnLoginWrap">
-              <button className={this.state.btn} onClick={this.handleLogin}>
+              <button
+                className={checkIdPw ? 'btnLoginActive' : 'btnLogin'}
+                onClick={this.handleLogin}
+                disabled={!checkIdPw}
+              >
                 로그인
               </button>
             </div>
