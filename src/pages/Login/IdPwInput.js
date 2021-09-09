@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 class IdPwInput extends Component {
   render() {
+    const { input, onchanging } = this.props;
+    const { name, type, title } = input;
+
     return (
       <div className="idPwCell">
         <span className="iconSize">
@@ -9,11 +12,10 @@ class IdPwInput extends Component {
         </span>
         <input
           className="inputIdPw"
-          name={this.props.name}
-          type={this.props.type}
-          placeholder={this.props.title}
-          onChange={this.props.onchanging}
-          loginkey={this.props.loginkey}
+          name={name}
+          type={type}
+          placeholder={title}
+          onChange={onchanging}
         />
       </div>
     );

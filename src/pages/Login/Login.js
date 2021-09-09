@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import IdPwInput from './IdPwInput';
 import './Login.scss';
 
@@ -8,7 +9,6 @@ class Login extends Component {
     this.state = {
       id: '',
       pw: '',
-      btn: false,
     };
   }
 
@@ -20,7 +20,6 @@ class Login extends Component {
   };
 
   handleLogin = () => {
-    console.log('click');
     fetch('http://10.58.4.133:8000/user/signin', {
       method: 'POST',
       body: JSON.stringify({
@@ -41,24 +40,8 @@ class Login extends Component {
   };
 
   render() {
-    const IDPW = [
-      {
-        name: 'id',
-        title: '아이디',
-        type: 'text',
-        onchanging: this.handleInputs,
-      },
-      {
-        name: 'pw',
-        title: '비밀번호',
-        type: 'password',
-        onchanging: this.handleInputs,
-      },
-    ];
+    const checkIdPw = this.state.id.includes('@') && this.state.pw.length > 7;
 
-    const checkIdPw =
-      this.state.id.includes('@') && this.state.pw.length > 7 ? true : false;
-    console.log(this.state);
     return (
       <div className="wrapLogin">
         <header className="header">
@@ -77,11 +60,8 @@ class Login extends Component {
                 return (
                   <IdPwInput
                     key={idx}
-                    name={input.name}
-                    title={input.title}
-                    type={input.type}
-                    onchanging={input.onchanging}
-                    loginkey={this.loginkey}
+                    input={input}
+                    onchanging={this.handleInputs}
                   />
                 );
               })}
@@ -100,9 +80,9 @@ class Login extends Component {
             <li className="findText">비밀번호 찾기</li>
             <li className="findText">아이디 찾기</li>
             <li className="findText">
-              <a className="goToSignup" href="/signup">
+              <Link to="/signup" className="goToSignup">
                 회원가입
-              </a>
+              </Link>
             </li>
           </ul>
 
@@ -128,5 +108,18 @@ class Login extends Component {
     );
   }
 }
+
+const IDPW = [
+  {
+    name: 'id',
+    title: '아이디',
+    type: 'text',
+  },
+  {
+    name: 'pw',
+    title: '비밀번호',
+    type: 'password',
+  },
+];
 
 export default Login;
