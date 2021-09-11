@@ -59,7 +59,13 @@ class ProductList extends Component {
     const searchValue = this.props.location.search.replace('?', '');
     const search = searchValue ? `&search=${searchValue}` : '';
 
-    fetch(`${PRODUCT_LIST_API + category + offset + limit + filter + search}`)
+    fetch(`${PRODUCT_LIST_API + category + offset + limit + filter + search}`, {
+      headers: {
+        authorization: localStorage.getItem('dot-token')
+          ? localStorage.getItem('dot-token')
+          : '',
+      },
+    })
       .then(result => result.json())
       .then(data =>
         this.setState({

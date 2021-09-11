@@ -145,7 +145,7 @@ class DetailCard extends Component {
           <span>리뷰슈</span>
           <strong>{reviews && reviews.length}</strong>
           <span>사용자 평점</span>
-          <strong>{comment_avg_rate}</strong>
+          <strong>{comment_avg_rate || '0.0'}</strong>
           <span>/</span>
           <strong>5</strong>
         </div>

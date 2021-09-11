@@ -92,7 +92,7 @@ class Product extends Component {
           </div>
           <div className="gradeWrapper">
             <span className="grade">평점</span>
-            <em>{avg_rate}</em>
+            <em>{avg_rate ? avg_rate : '0.0'}</em>
             <span>/</span>
             <span>5</span>
           </div>

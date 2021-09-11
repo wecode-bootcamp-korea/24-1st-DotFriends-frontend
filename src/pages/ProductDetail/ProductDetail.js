@@ -41,17 +41,9 @@ class ProductDetail extends Component {
   };
 
   updateCount = (e, action) => {
-    switch (action) {
-      case 'add':
-        this.setState({ count: this.state.count + 1 });
-        break;
-      case 'substract':
-        const count = this.state.count - 1;
-        this.setState({ count: count > 1 ? count : 1 });
-        break;
-      default:
-        break;
-    }
+    const count =
+      action === 'add' ? this.state.count + 1 : this.state.count - 1;
+    this.setState({ count: count > 1 ? count : 1 });
   };
 
   handleDelete = () => {
@@ -111,7 +103,7 @@ class ProductDetail extends Component {
                     }
                   />
                   <div>
-                    <span>{comment_avg_rate}</span>
+                    <span>{comment_avg_rate || '0.0'}</span>
                     <span>/</span>
                     <span>5</span>
                   </div>
