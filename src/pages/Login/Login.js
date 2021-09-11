@@ -33,7 +33,7 @@ class Login extends Component {
         if (result.MESSAGE === 'SUCCESS') {
           alert(`Welcome ${this.state.id}`);
           localStorage.setItem('dot-token', result.TOKEN);
-          this.props.history.push('/');
+          this.props.history.go(-1);
         } else {
           alert('Login failed');
         }
@@ -42,7 +42,7 @@ class Login extends Component {
 
   render() {
     const checkIdPw = this.state.id.includes('@') && this.state.pw.length > 7;
-
+    console.log(this.props.location);
     return (
       <div className="wrapLogin">
         <header className="header">

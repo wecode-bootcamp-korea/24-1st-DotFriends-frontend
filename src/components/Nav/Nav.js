@@ -23,6 +23,7 @@ class Nav extends Component {
       localStorage.removeItem('dot-token');
       this.setState({ isLogined: false });
       alert('로그아웃이 완료되었습니다.');
+      window.location.reload();
     } else {
       alert('로그인 하시겠습니까?');
       this.props.history.push('/login');

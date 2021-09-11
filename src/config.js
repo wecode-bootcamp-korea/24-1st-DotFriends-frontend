@@ -1,5 +1,7 @@
 // 베이스
-export const BASE_URL = 'http://10.58.2.237:8000';
+export const BASE_URL = 'http://10.58.5.239:8000';
+// export const BASE_URL = "http://12.117.234.136:8000"
+// export const BASE_URL = 'http://10.58.0.135:8000';
 
 // 보배님 API
 export const LOGIN_API = `${BASE_URL}/user/sign-in`;
