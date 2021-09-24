@@ -31,7 +31,7 @@
 
 ### 데모영상
 
-[시연영상 보러가기]https://www.youtube.com/watch?v=T5bOgE7dzwk
+[시연영상 보러가기](https://www.youtube.com/watch?v=T5bOgE7dzwk)
 
 ## 적용 기술 및 구현사항
 
